@@ -1,4 +1,4 @@
 PokerCast-android
 =================
 
-PokerCast android client
+PokerCast android client.
