@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Cast Framework Receiver Test App</string>
+    <string name="app_id">EEC8CC8C</string>
+    <string name="namespace">urn:x-cast:com.pokercast.receiver</string>
+    <string name="action_settings">Settings</string>
+    <string name="media_route_menu_title">MEDIA</string>
+
+</resources>
