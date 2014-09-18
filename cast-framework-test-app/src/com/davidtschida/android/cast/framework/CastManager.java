@@ -5,6 +5,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.MediaRouteActionProvider;
+import android.support.v7.app.MediaRouteButton;
 import android.support.v7.media.MediaRouteSelector;
 import android.support.v7.media.MediaRouter;
 import android.util.Log;
@@ -92,6 +93,23 @@ public class CastManager {
                 .getActionProvider(mediaRouteMenuItem);
         // Set the MediaRouteActionProvider selector for device discovery.
         mediaRouteActionProvider.setRouteSelector(mMediaRouteSelector);
+    }
+
+    public void setMediaRouteActionProvider(Object o){
+        if (o instanceof Menu){
+            setMenu((Menu) o);
+        }
+        else if (o instanceof MediaRouteButton){
+            setButton((MediaRouteButton) o);
+        }
+        else {
+            //break and it's all over
+            //throw new Exception();
+        }
+    }
+
+    public void setButton(MediaRouteButton mrb){
+        mrb.setRouteSelector(mMediaRouteSelector);
     }
 
     public void setConnectedListener(OnCastConnectedListener mConnectedListener) {

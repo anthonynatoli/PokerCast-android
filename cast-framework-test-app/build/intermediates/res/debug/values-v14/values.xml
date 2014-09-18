@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/res/values-v14/styles.xml -->
+    <!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/res/values-v14/styles.xml -->
     <eat-comment />
 
     <style name="AppBaseTheme" parent="android:Theme.Holo.Light.DarkActionBar">
         <!-- API 14 theme customizations can go here. -->
     </style>
-    <!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v14/values.xml -->
+    <!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-v14/values.xml -->
     <eat-comment />
 
     <style name="TextAppearance.AppCompat.Base.SearchResult.Subtitle" parent="@android:TextAppearance.Holo.SearchResult.Subtitle" />

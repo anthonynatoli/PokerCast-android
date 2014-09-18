@@ -58,4 +58,4 @@
                 android:text="@string/mr_media_route_controller_disconnect" />
     </LinearLayout>
 </LinearLayout>
-<!-- From: file:/Volumes/Android/int/klp-dev/frameworks/support/v7/mediarouter/res/layout-v11/mr_media_route_controller_dialog.xml --><!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/19.0.1/res/layout-v11/mr_media_route_controller_dialog.xml -->
+<!-- From: file:/Volumes/Android/int/klp-dev/frameworks/support/v7/mediarouter/res/layout-v11/mr_media_route_controller_dialog.xml --><!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/19.0.1/res/layout-v11/mr_media_route_controller_dialog.xml -->

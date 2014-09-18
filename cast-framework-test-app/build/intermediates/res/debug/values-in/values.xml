@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:ns1="urn:oasis:names:tc:xliff:document:1.2">
 
-    <!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-in/values.xml -->
+    <!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/19.0.1/res/values-in/values.xml -->
     <eat-comment />
 
     <string name="abc_action_bar_home_description" msgid="4600421777120114993">"Navigasi ke beranda"</string>
@@ -17,7 +17,7 @@
     <string name="abc_searchview_description_voice" msgid="893419373245838918">"Penelusuran suara"</string>
     <string name="abc_shareactionprovider_share_with" msgid="3421042268587513524">"Bagikan dengan"</string>
     <string name="abc_shareactionprovider_share_with_application" msgid="7165123711973476752">"Bagikan dengan %s"</string>
-    <!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/build/intermediates/exploded-aar/com.google.android.gms/play-services/4.2.42/res/values-in/strings.xml -->
+    <!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/build/intermediates/exploded-aar/com.google.android.gms/play-services/4.2.42/res/values-in/strings.xml -->
     <eat-comment />
 
     <string name="auth_client_needs_enabling_title" msgid="3983201110833868073">"Aplikasi membutuhkan Layanan Google Play untuk dapat diaktifkan."</string>
@@ -46,7 +46,7 @@
     <string name="common_google_play_services_update_title" msgid="6006316683626838685">"Perbarui layanan Google Play"</string>
     <string name="common_signin_button_text" msgid="9071884888741449141">"Masuk"</string>
     <string name="common_signin_button_text_long" msgid="2429381841831957106">"Masuk dengan Google"</string>
-    <!-- From: file:/C:/Users/Joe%20Koncel/AndroidStudioProjects/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/19.0.1/res/values-in/values.xml -->
+    <!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/build/intermediates/exploded-aar/com.android.support/mediarouter-v7/19.0.1/res/values-in/values.xml -->
     <eat-comment />
 
     <string name="mr_media_route_button_content_description" msgid="4271159405637008602">"Keluaran media"</string>
