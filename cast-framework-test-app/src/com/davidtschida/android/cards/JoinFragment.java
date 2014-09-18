@@ -4,6 +4,7 @@ package com.davidtschida.android.cards;
  * Created by Joe Koncel on 9/17/2014.
  */
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.MediaRouteButton;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,6 +40,14 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
                 try {
                     JSONObject o = new JSONObject("{ \"command\": \"join\" }");
                     host.getCastmanager().sendMessage(o);
+
+                    //Uncomment this to test
+                    /*HostFragment hf = new HostFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.content, hf);
+                    //transaction.addToBackStack(null);
+                    transaction.commit();*/
+
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
@@ -57,7 +66,9 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-        boolean success, host;
+        boolean success, gameHost;
+
+
         try{
             success = json.getBoolean("success");
         }
@@ -68,18 +79,28 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         }
         if (success){
             try {
-                host = json.getBoolean("host");
+                gameHost = json.getBoolean("host");
             }
             catch (JSONException e){
                 Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
                 e.printStackTrace();
-                host = false;
+                gameHost = false;
             }
-            if (host){
+            if (gameHost){
                 //Open the host fragment
+                HostFragment hf = new HostFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, hf);
+                //transaction.addToBackStack(null);
+                transaction.commit();
             }
             else {
-                //Open the "waiting for players fragment"
+                //Open the not host fragment
+                NotHostFragment nhf = new NotHostFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, nhf);
+                //transaction.addToBackStack(null);
+                transaction.commit();
             }
             //store player ID
         }
