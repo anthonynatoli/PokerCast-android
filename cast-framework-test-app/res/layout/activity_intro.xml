@@ -1,0 +1,30 @@
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_vertical|center"
+    android:orientation="vertical"
+    android:background="#000"
+    tools:context="com.davidtschida.android.cards.IntroActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/table_resized"
+        android:scaleType="fitXY"
+        android:alpha="0.9"
+        />
+    <ImageView
+        android:layout_width="290dp"
+        android:layout_height="290dp"
+        android:id="@+id/imageView"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo"
+        />
+
+
+</RelativeLayout>
+
+
+

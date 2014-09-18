@@ -26,16 +26,22 @@
     <application
         android:name="com.davidtschida.android.cast.framework.CastApplication"
         android:allowBackup="true"
-        android:label="@string/app_name"
+        android:icon="@drawable/ic_launcher"
+        android:label="PokerCast"
         android:theme="@style/Theme.AppCompat" >
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
         <activity
-            android:name="com.davidtschida.android.cards.MainActivity"
-            android:label="@string/app_name"
+            android:name=".MainActivity"
+            android:label="PokerCast"
             android:screenOrientation="portrait" >
+
+        </activity>
+        <activity
+            android:name=".IntroActivity"
+            android:label="PokerCast" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
