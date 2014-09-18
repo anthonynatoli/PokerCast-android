@@ -17,8 +17,9 @@ bin/
 gen/
 
 # Ignore gradle files
-.gradle/
+.gradle
 build/
+.idea/
 
 # Local configuration file (sdk path, etc)
 local.properties
