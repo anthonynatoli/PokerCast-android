@@ -9,8 +9,12 @@ import android.view.MenuItem;
 import android.view.Window;
 
 import com.davidtschida.android.cards.R;
+import com.davidtschida.android.cast.framework.OnCastConnectedListener;
+import com.davidtschida.android.cast.framework.OnMessageReceivedListener;
 
-public class IntroActivity extends Activity {
+import org.json.JSONObject;
+
+public class IntroActivity extends Activity implements OnMessageReceivedListener, OnCastConnectedListener {
     Handler handler;
 
     @Override
@@ -57,5 +61,15 @@ public class IntroActivity extends Activity {
             return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onCastConnected() {
+
+    }
+
+    @Override
+    public void onMessageRecieved(JSONObject json) {
+
     }
 }

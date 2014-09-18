@@ -1,0 +1,108 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.davidtschida.android.cards.HandFragment">
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#000">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentTop="true"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:weightSum="1">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/chip"
+                android:gravity="center_vertical"
+                android:layout_marginTop="3dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textColor="#fff"
+                android:text="X 50"
+                android:textSize="50sp"
+               android:gravity="center_vertical"/>
+
+            </LinearLayout>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/table_resized"
+            android:scaleType="fitXY"
+            android:alpha="0.4"
+            />
+        <ImageView
+            android:layout_width="290dp"
+            android:layout_height="330dp"
+            android:id="@+id/card1"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="50dp"
+            android:src="@drawable/c1"
+
+            />
+        <ImageView
+            android:layout_width="290dp"
+            android:layout_height="330dp"
+            android:id="@+id/card2"
+            android:src="@drawable/s1"
+            android:layout_alignLeft="@id/card1"
+            android:layout_alignBottom="@id/card1"
+            android:layout_marginLeft="45dp"
+            />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:weightSum="1"
+            android:paddingRight="4dp"
+            android:paddingLeft="4dp"
+            android:paddingBottom="4dp"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.333"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/blue_shape"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="BET"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.333"
+                android:layout_marginRight="3dp"
+                android:background="@drawable/red_shape"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="FOLD"
+                />
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.333"
+                android:background="@drawable/navy_shape"
+                android:textColor="#fff"
+                android:textStyle="bold"
+                android:text="HIDE"
+                />
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</FrameLayout>
+
+
+
+
+

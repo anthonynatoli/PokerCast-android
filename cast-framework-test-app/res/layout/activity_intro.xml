@@ -13,7 +13,7 @@
         android:layout_height="match_parent"
         android:src="@drawable/table_resized"
         android:scaleType="fitXY"
-        android:alpha="0.9"
+        android:alpha="0.4"
         />
     <ImageView
         android:layout_width="290dp"
