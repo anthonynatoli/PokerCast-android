@@ -63,4 +63,4 @@
             android:text="Messages from the server will appear here."
             android:id="@+id/receive" />
     </LinearLayout>
-</RelativeLayout><!-- From: file:/C:/Users/Joe%20Koncel/Documents/GitHub/PokerCast-android/cast-framework-test-app/res/layout/welcome.xml -->
+</RelativeLayout><!-- From: file:/C:/Users/Lee/Documents/GitHub/PokerCast-android/cast-framework-test-app/res/layout/welcome.xml -->
