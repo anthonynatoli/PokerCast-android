@@ -4,6 +4,7 @@ package com.davidtschida.android.cards;
 
 import android.os.Bundle;
 import android.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,6 +71,14 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
         boolean success, host;
         try{
             success = json.getBoolean("success");
+            //Server acknowledges it received the information
+            if (success) {
+                HandFragment hf = new HandFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, hf);
+                //transaction.addToBackStack(null);
+                transaction.commit();
+            }
         }
         catch (JSONException e){
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
