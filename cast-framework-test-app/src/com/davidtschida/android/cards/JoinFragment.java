@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
@@ -23,7 +24,8 @@ import org.json.JSONObject;
  */
 public class JoinFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
     Button sendButton;
-    MediaRouteButton mrb;
+    EditText playerName;
+    //MediaRouteButton mrb;
 
     public JoinFragment() {
     }
@@ -31,18 +33,26 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.join_fragment, container, false);
-        mrb = (MediaRouteButton) rootView.findViewById(R.id.media_route_button);
-        host.getCastmanager().setMediaRouteActionProvider(mrb);
+        //mrb = (MediaRouteButton) rootView.findViewById(R.id.media_route_button);
+        //host.getCastmanager().setMediaRouteActionProvider(mrb);
+        playerName = (EditText) rootView.findViewById(R.id.player_name);
         sendButton = (Button) rootView.findViewById(R.id.join_button);
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //Toast.makeText(getActivity(), playerName.getText(), Toast.LENGTH_LONG).show();
+                if (playerName.getText().length() == 0){
+                    Toast.makeText(getActivity(), "Please enter a name", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 try {
-                    JSONObject o = new JSONObject("{ \"command\": \"join\" }");
+                    JSONObject o = new JSONObject();
+                    o.put("command", "join");
+                    o.put("name", playerName.getText().toString());
                     host.getCastmanager().sendMessage(o);
 
                     //Uncomment this to test
-                    /*HostFragment hf = new HostFragment();
+                    /*HandFragment hf = new HandFragment();
                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
                     transaction.replace(R.id.content, hf);
                     //transaction.addToBackStack(null);
@@ -105,7 +115,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
             //store player ID
         }
         else {
-            //Toast.makeText(getActivity(), "Connection busy, try again", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity(), "Try again", Toast.LENGTH_LONG).show();
         }
 
     }
