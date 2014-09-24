@@ -3,10 +3,13 @@ package com.davidtschida.android.cards;
 /**
  * Created by Joe Koncel on 9/17/2014.
  */
+import android.graphics.Color;
+import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.MediaRouteButton;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -37,6 +40,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         //host.getCastmanager().setMediaRouteActionProvider(mrb);
         playerName = (EditText) rootView.findViewById(R.id.player_name);
         sendButton = (Button) rootView.findViewById(R.id.join_button);
+
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,6 +65,25 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
                 } catch(JSONException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        sendButton.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN: {
+                        v.getBackground().setColorFilter(getResources().getColor(R.color.green_pressed), PorterDuff.Mode.DARKEN);
+                        v.invalidate();
+                        break;
+                    }
+                    case MotionEvent.ACTION_UP: {
+                        v.getBackground().clearColorFilter();
+                        v.invalidate();
+                        break;
+                    }
+                }
+                return false;
             }
         });
         return rootView;
