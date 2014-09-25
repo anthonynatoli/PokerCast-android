@@ -3,6 +3,7 @@ package com.davidtschida.android.cards;
 /**
  * Created by Joe Koncel on 9/17/2014.
  */
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import org.json.JSONObject;
 public class JoinFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
     Button sendButton;
     EditText playerName;
+    SharedPreferences mPrefs;
     //MediaRouteButton mrb;
 
     public JoinFragment() {
@@ -86,6 +88,9 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
                 return false;
             }
         });
+
+        mPrefs = getActivity().getSharedPreferences("data", 0);
+
         return rootView;
     }
 
@@ -100,7 +105,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
         boolean success, gameHost;
-
+        String player_id;
 
         try{
             success = json.getBoolean("success");
@@ -113,6 +118,11 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         if (success){
             try {
                 gameHost = json.getBoolean("host");
+                player_id = json.getString("player_id");
+
+                SharedPreferences.Editor editor = mPrefs.edit();
+                editor.putString("player_id", player_id);
+                editor.commit();
             }
             catch (JSONException e){
                 Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
