@@ -152,14 +152,19 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
                 HostFragment hf = new HostFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, hf);
+                host.getCastmanager().setConnectedListener(hf);
+                host.getCastmanager().setOnMessageRecievedListener(hf);
                 //transaction.addToBackStack(null);
                 transaction.commit();
+
             }
             else {
                 //Open the not host fragment
                 NotHostFragment nhf = new NotHostFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, nhf);
+                host.getCastmanager().setConnectedListener(nhf);
+                host.getCastmanager().setOnMessageRecievedListener(nhf);
                 //transaction.addToBackStack(null);
                 transaction.commit();
             }

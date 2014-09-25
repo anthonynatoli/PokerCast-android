@@ -29,6 +29,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     EditText player;
     EditText chip;
     SharedPreferences pref;
+    ProgressDialog pd;
 
     public HostFragment() {
         // Required empty public constructor
@@ -70,7 +71,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                             content.put("aiPlayer", p);
                             content.put("chipsPerPlayer", c);
                             host.getCastmanager().sendMessage(msg);
-                            ProgressDialog.show(getActivity(), "Loading", "Waiting for players...");
+                            pd = ProgressDialog.show(getActivity(), "Loading", "Waiting for the server...");
                         }
                     }
                 } catch (JSONException e) {
@@ -113,6 +114,8 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             edit.putInt("chips", chips);
             edit.commit();
             //Server acknowledges it received the information
+
+            pd.dismiss();;
 
             HandFragment hf = new HandFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();

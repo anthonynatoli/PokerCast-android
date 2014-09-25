@@ -27,6 +27,7 @@ import org.json.JSONObject;
 public class NotHostFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
 
     SharedPreferences pref;
+    ProgressDialog pd;
 
     public NotHostFragment() {
         // Required empty public constructor
@@ -37,7 +38,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_not_host, container, false);
-        ProgressDialog.show(this.getActivity(), "Loading", "Waiting for players...");
+        pd = ProgressDialog.show(this.getActivity(), "Loading", "Waiting for players...");
 
         return rootView;
     }
@@ -69,6 +70,8 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
             edit.putInt("chips",chips);
             edit.commit();
             //Server acknowledges it received the information
+
+            pd.dismiss();
 
             HandFragment hf = new HandFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
