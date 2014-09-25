@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
 import com.davidtschida.android.cast.framework.OnMessageReceivedListener;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -60,7 +61,9 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
                 try {
                     JSONObject o = new JSONObject();
                     o.put("command", "join");
-                    o.put("name", playerName.getText().toString());
+                    JSONObject content = new JSONObject();
+                    content.put("name", playerName.getText().toString());
+                    o.put("content", content);
                     host.getCastmanager().sendMessage(o);
 
                     //Uncomment this to test
@@ -107,19 +110,28 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
 
     }
 
+    /*@Override
+    public void onDestroyView(){
+        super.onDestroyView();
+        onDestroy();
+    }*/
+
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
         boolean success, gameHost;
         String player_id;
 
+        success = false;
         try{
-            success = json.getBoolean("success");
+            if (json.get("command").equals("join")) {
+                json = json.getJSONObject("content");
+                success = json.getBoolean("success");
+            }
         }
         catch (JSONException e){
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
-            success = false;
         }
         if (success){
             try {

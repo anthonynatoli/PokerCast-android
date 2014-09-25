@@ -46,9 +46,11 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             public void onClick(View v) {
                 try {
                     JSONObject msg = new JSONObject();
-                    msg.put("command", "start");
-                    msg.put("aiPlayer", player.getText());
-                    msg.put("chipsPerPlayer", chip.getText());
+                    msg.put("command", "start_hand");
+                    JSONObject content = new JSONObject();
+                    content.put("aiPlayer", player.getText());
+                    content.put("chipsPerPlayer", chip.getText());
+                    msg.put("content", content);
                     host.getCastmanager().sendMessage(msg);
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -68,9 +70,12 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-        boolean success, host;
+        boolean success = false;
         try{
-            success = json.getBoolean("success");
+            if (json.get("command").equals("hand")) {
+                json = json.getJSONObject("content");
+                success = json.getBoolean("success");
+            }
             //Server acknowledges it received the information
             if (success) {
                 HandFragment hf = new HandFragment();
