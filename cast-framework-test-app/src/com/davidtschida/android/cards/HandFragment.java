@@ -1,20 +1,22 @@
 package com.davidtschida.android.cards;
 
-/**
- * Created by Joe Koncel on 9/17/2014.
- */
-import android.graphics.Matrix;
+
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.graphics.Color;
+import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.v7.app.MediaRouteButton;
-import android.util.Log;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 /**
- * Created by Joe Koncel on 9/17/2014.
+ * Created by Inhwan Lee on 9/17/2014.
  */
 public class HandFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
     private ImageView card1;
@@ -39,23 +41,67 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     private String secondCard;
     private int num_chip;
     private boolean isRotated;
+    private boolean isHidden;
 
+    private String player_id;
+    private Button turnBox;
+
+    private EditText betText;
+
+    private int last_bet;
+
+    private SharedPreferences mPrefs;
     public HandFragment() {
     }
     public void setFirstCard(String name) {
         firstCard = name;
         //set image here
-        
+        Resources res = getResources();
+        int resID = res.getIdentifier(firstCard, "drawable", getActivity().getPackageName());
+        Drawable drawable = res.getDrawable(resID);
+        card1.setImageDrawable(drawable);
+
     }
     public void setSecondCard(String name) {
         secondCard = name;
-        //set image here;
+        //set image here
+        Resources res = getResources();
+        int resID = res.getIdentifier(secondCard, "drawable", getActivity().getPackageName());
+        Drawable drawable = res.getDrawable(resID);
+        card2.setImageDrawable(drawable);
 
     }
     public void setChip(int num) {
         num_chip = num;
         chipView.setText("X "+num_chip);
 
+    }
+    public void disableButtons() {
+        foldButton.setEnabled(false);
+        betButton.setEnabled(false);
+        hideButton.setEnabled(false);
+        turnBox.setEnabled(false);
+        turnBox.setVisibility(View.INVISIBLE);
+        foldButton.setBackgroundResource(R.drawable.grey_shape);
+        betButton.setBackgroundResource(R.drawable.grey_shape);
+        hideButton.setBackgroundResource(R.drawable.grey_shape);
+        foldButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+        betButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+        hideButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
+        betButton.getBackground().setAlpha(170);
+        foldButton.getBackground().setAlpha(170);
+        hideButton.getBackground().setAlpha(170);
+    }
+    public void enableButtons() {
+        turnBox.setVisibility(View.VISIBLE);
+
+        betButton.setEnabled(true);
+        foldButton.setEnabled(true);
+        hideButton.setEnabled(true);
+
+        betButton.setBackgroundResource(R.drawable.blue_shape);
+        foldButton.setBackgroundResource(R.drawable.red_shape);
+        hideButton.setBackgroundResource(R.drawable.navy_shape);
     }
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -66,7 +112,23 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         betButton = (Button) rootView.findViewById(R.id.betButton);
         hideButton = (Button) rootView.findViewById(R.id.hideButton);
         chipView = (TextView) rootView.findViewById(R.id.num_chip);
+        turnBox = (Button) rootView.findViewById(R.id.turnBox);
         isRotated = false;
+        isHidden = false;
+        player_id = null;
+        last_bet = 0;
+
+        //get Player_id from sharedPreference
+        /*
+        mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        player_id = mPrefs.getString("player_id", null);
+        setFirstCard(mPrefs.getString("card1", null));
+        setSecondCard(mPrefs.getString("card2", null));
+        setChip(mPrefs.getInt("chips", 0));
+        */
+        //Disable buttons unless it's my turn
+        disableButtons();
+
 
 
 
@@ -89,62 +151,164 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     card2.setRotation(0);
                     isRotated = false;
                 }
+                enableButtons();
             }
         });
         foldButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Fold implementation
-                Toast.makeText(getActivity(), "FOLD CLICKED", Toast.LENGTH_LONG).show();
+                try {
+                    JSONObject o = new JSONObject("{ \"command\": \"my_turn\", \"bet\": \"-1\" }");
+                    host.getCastmanager().sendMessage(o);
+
+                } catch(JSONException e) {
+                    e.printStackTrace();
+                }
+                disableButtons();
             }
         });
         betButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Bet Implementation
-                Toast.makeText(getActivity(), "BET CLICKED", Toast.LENGTH_LONG).show();
+
+                AlertDialog.Builder alert = new AlertDialog.Builder(getActivity());
+                LayoutInflater li = LayoutInflater.from(getActivity());
+                View dialogView = li.inflate(R.layout.bet_edittext, null);
+
+                alert.setTitle("BET");
+                alert.setMessage("Choose your Bet!");
+                alert.setView(dialogView);
+
+                // Set an EditText view to get user input
+                betText = (EditText) dialogView.findViewById(R.id.bet_text_for_dialog);
+                betText.setText(last_bet+"");
+                betText.setSelection(betText.getText().length()); // cursor at the end
+
+                //soft keyboard shows up
+                betText.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        InputMethodManager keyboard = (InputMethodManager) getActivity()
+                                .getSystemService(Context.INPUT_METHOD_SERVICE);
+                        keyboard.showSoftInput(betText, 0);
+                    }
+                }, 50);
+
+                betText.setRawInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+
+
+                alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        final String currentBet = betText.getText().toString();
+
+                        //hide keyboard
+                        InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                        keyboard.hideSoftInputFromWindow(betText.getWindowToken(), 0);
+
+                        if(Integer.parseInt(currentBet) < last_bet) {
+                            // Ask confirmation for the bet amount
+                            AlertDialog.Builder error = new AlertDialog.Builder(getActivity());
+                            error.setTitle("BET");
+                            error.setMessage("You should bet more than the last bet.");
+                            error.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+
+                                }
+                            });
+                            error.show();
+                        }
+                        else {
+                            // Ask confirmation for the bet amount
+                            AlertDialog.Builder confirmation = new AlertDialog.Builder(getActivity());
+                            confirmation.setTitle("BET");
+                            confirmation.setMessage("Are you sure you want to bet " + currentBet + "?");
+                            confirmation.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    Toast.makeText(getActivity(), "Betting " + currentBet, Toast.LENGTH_SHORT).show();
+                                    try {
+                                        JSONObject o = new JSONObject("{ \"command\": \"my_turn\", \"bet\": \"" + currentBet + "\" }");
+                                        host.getCastmanager().sendMessage(o);
+
+                                    } catch (JSONException e) {
+                                        e.printStackTrace();
+                                    }
+                                }
+                            });
+                            confirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int whichButton) {
+                                    // Canceled.
+                                }
+                            });
+                            confirmation.show();
+                        }
+
+                    }
+                });
+                alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+
+                alert.show();
+                disableButtons();
             }
         });
         hideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Hide Implementation
-                Toast.makeText(getActivity(), "HIDE  CLICKED", Toast.LENGTH_LONG).show();
+                if(!isHidden) {
+                    hideButton.setText("UNDO");
+                    card1.setVisibility(View.INVISIBLE);
+                    card2.setVisibility(View.INVISIBLE);
+                    isHidden = true;
+                }
+                else {
+                    hideButton.setText("HIDE");
+                    card1.setVisibility(View.VISIBLE);
+                    card2.setVisibility(View.VISIBLE);
+                    isHidden = false;
+                }
             }
         });
     }
 
     @Override
     public void onMessageRecieved(JSONObject json) {
-        //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-        boolean success, host;
+        String command;
+
+        //Message for turn
+        String turnPlayerID;
+
+        //Message for end_hand
+        String winner_id;
+        int pot_value;
+
         try{
-            success = json.getBoolean("success");
+            command = json.getString("command");
+            //Turn message
+            if(command.equals("turn")) {
+                this.last_bet = json.getInt("last_bet");
+                turnPlayerID = json.getString("player_id");
+                if (player_id != null && player_id.equals(turnPlayerID)) {
+                    //It's my turn!
+                    enableButtons();
+                }
+            }
+            else if(command.equals("end_hand")) {
+                //End_hand message
+                winner_id = json.getString("winner_id");
+                pot_value = json.getInt("pot_value");
+            }
+
+
         }
         catch (JSONException e){
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
-            success = false;
-        }
-        if (success){
-            try {
-                host = json.getBoolean("host");
-            }
-            catch (JSONException e){
-                Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
-                e.printStackTrace();
-                host = false;
-            }
-            if (host){
-                //Open the host fragment
-            }
-            else {
-                //Open the "waiting for players fragment"
-            }
-            //store player ID
-        }
-        else {
-            //Toast.makeText(getActivity(), "Connection busy, try again", Toast.LENGTH_LONG).show();
         }
 
     }
