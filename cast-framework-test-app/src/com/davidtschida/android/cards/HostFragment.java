@@ -1,7 +1,6 @@
 package com.davidtschida.android.cards;
 
 
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -22,9 +21,8 @@ import org.json.JSONObject;
 
 /**
  * A simple {@link Fragment} subclass.
- *
  */
-public class HostFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener{
+public class HostFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
 
     Button startButton;
     EditText player;
@@ -40,41 +38,50 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_host, container, false);
-        player = (EditText)rootView.findViewById(R.id.aiPlayer);
-        chip = (EditText)rootView.findViewById(R.id.chips);
+        player = (EditText) rootView.findViewById(R.id.aiPlayer);
+        chip = (EditText) rootView.findViewById(R.id.chips);
         startButton = (Button) rootView.findViewById(R.id.start);
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    if(player.getText().length() != 0 && chip.getText().length() != 0) {
-                        // filter null input
-                        int p = Integer.parseInt(player.getText() + "");
-                        int c = Integer.parseInt(chip.getText() + "");
-                        if ((p > 0 && p < 22) && (c > 0)) {
-                            // filter the wrong input from user.
+                    if (player.getText().length() == 0) {
+                        Toast.makeText(getActivity(), "Enter the number of AI players", Toast.LENGTH_LONG).show();
+                        // filter null input for # players
+                    } else if (chip.getText().length() == 0) {
+                        Toast.makeText(getActivity(), "Enter the amount of chips", Toast.LENGTH_LONG).show();
+                        // filter null input for chips
+                    } else {
+                        int p = Integer.parseInt(player.getText().toString());
+                        int c = Integer.parseInt(chip.getText().toString());
+                        // filter the wrong input from user.
+                        if(p < 0 || p > 21) {
                             // 1) 1 <= # of AI player <= 21
+                            Toast.makeText(getActivity(), "Please enter the valid input(# of AI players).", Toast.LENGTH_LONG).show();
+                        } else if(c <= 0) {
                             // 2) chips cannot be negative
+                            Toast.makeText(getActivity(), "Please enter the valid input(Amount of chips). ", Toast.LENGTH_LONG).show();
+                        } else {
+
                             JSONObject msg = new JSONObject();
                             msg.put("command", "start");
-                            msg.put("aiPlayer", player.getText());
-                            msg.put("chipsPerPlayer", chip.getText());
+                            msg.put("aiPlayer", p);
+                            msg.put("chipsPerPlayer", c);
                             host.getCastmanager().sendMessage(msg);
-                        } else {
-                            Toast.makeText(getActivity(), "Wrong input", Toast.LENGTH_LONG).show();
                         }
-                    } else {
-                        Toast.makeText(getActivity(), "No inputs", Toast.LENGTH_LONG).show();
                     }
-
                 } catch (JSONException e) {
                     e.printStackTrace();
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
                 }
-            }
-        });
-
-        return rootView;
+        }
     }
+
+    );
+
+    return rootView;
+}
 
 
     @Override
@@ -90,16 +97,16 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
         String card1, card2;
 
 
-        try{
-            pref = getActivity().getSharedPreferences("data",0);
+        try {
+            pref = getActivity().getSharedPreferences("data", 0);
             chips = json.getInt("chips");
             card1 = json.getString("card1");
             card2 = json.getString("card2");
 
             SharedPreferences.Editor edit = pref.edit();
-            edit.putString("card1",card1);
-            edit.putString("card2",card2);
-            edit.putInt("chips",chips);
+            edit.putString("card1", card1);
+            edit.putString("card2", card2);
+            edit.putInt("chips", chips);
             edit.commit();
             //Server acknowledges it received the information
 
@@ -109,8 +116,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             //transaction.addToBackStack(null);
             transaction.commit();
 
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
