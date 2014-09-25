@@ -30,6 +30,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     Button sendButton;
     EditText playerName;
     SharedPreferences mPrefs;
+    Boolean connected;
     //MediaRouteButton mrb;
 
     public JoinFragment() {
@@ -40,6 +41,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         View rootView = inflater.inflate(R.layout.join_fragment, container, false);
         //mrb = (MediaRouteButton) rootView.findViewById(R.id.media_route_button);
         //host.getCastmanager().setMediaRouteActionProvider(mrb);
+        connected = false;
         playerName = (EditText) rootView.findViewById(R.id.player_name);
         sendButton = (Button) rootView.findViewById(R.id.join_button);
 
@@ -47,6 +49,10 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity(), playerName.getText(), Toast.LENGTH_LONG).show();
+                if (connected == false){
+                    Toast.makeText(getActivity(), "Please first connect to a Chromecast", Toast.LENGTH_LONG).show();
+                    return;
+                }
                 if (playerName.getText().length() == 0){
                     Toast.makeText(getActivity(), "Please enter a name", Toast.LENGTH_LONG).show();
                     return;
@@ -156,5 +162,6 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onCastConnected() {
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
+        connected = true;
     }
 }
