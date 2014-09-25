@@ -1,6 +1,7 @@
 package com.davidtschida.android.cards;
 
 
+import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -68,6 +69,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                             msg.put("aiPlayer", p);
                             msg.put("chipsPerPlayer", c);
                             host.getCastmanager().sendMessage(msg);
+                            ProgressDialog.show(getActivity(), "Loading", "Waiting for players...");
                         }
                     }
                 } catch (JSONException e) {
