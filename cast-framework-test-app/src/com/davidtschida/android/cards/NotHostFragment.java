@@ -3,6 +3,7 @@ package com.davidtschida.android.cards;
 
 
 import android.app.ProgressDialog;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -25,6 +26,8 @@ import org.json.JSONObject;
  */
 public class NotHostFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
 
+    SharedPreferences pref;
+
     public NotHostFragment() {
         // Required empty public constructor
     }
@@ -46,22 +49,33 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
     @Override
     public void onMessageRecieved(JSONObject json) {
-        boolean success, host;
+
+        int chips;
+        String card1, card2;
+
         try{
-            success = json.getBoolean("success");
+            pref = getActivity().getSharedPreferences("data",0);
+            chips = json.getInt("chips");
+            card1 = json.getString("card1");
+            card2 = json.getString("card2");
+
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putString("card1",card1);
+            edit.putString("card2",card2);
+            edit.putInt("chips",chips);
+            edit.commit();
             //Server acknowledges it received the information
-            if (success) {
-                HandFragment hf = new HandFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.content, hf);
-                //transaction.addToBackStack(null);
-                transaction.commit();
-            }
+
+            HandFragment hf = new HandFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content, hf);
+            //transaction.addToBackStack(null);
+            transaction.commit();
+
         }
         catch (JSONException e){
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
-            success = false;
         }
     }
 }

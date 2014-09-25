@@ -1,52 +1,73 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000"
     android:orientation="vertical"
     tools:context="com.davidtschida.android.cards.HostFragment">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:alpha="0.4"
+        android:scaleType="fitXY"
+        android:src="@drawable/table_resized" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="# of AI player" />
+            android:gravity="center">
 
-        <EditText
-            android:text=""
-            android:id="@+id/aiPlayer"
-            android:hint="1-21"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="# of AI player"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/aiPlayer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="1-21"
+                android:inputType="number"
+                android:text=""
+                android:textSize="20dp" />
 
         </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
-        <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Amount of chips" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Amount of chips"
+                android:textSize="20dp" />
 
-        <EditText
-            android:text=""
-            android:id="@+id/chips"
-            android:hint="$"
+            <EditText
+                android:id="@+id/chips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="$"
+                android:inputType="number"
+                android:text=""
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:inputType="numberDecimal" />
-
+            android:text="Start"
+            android:textSize="20dp" />
     </LinearLayout>
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/start"
-        android:text="Start" />
-
-</LinearLayout>
+</RelativeLayout>

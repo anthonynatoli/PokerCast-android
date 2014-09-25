@@ -2,6 +2,7 @@ package com.davidtschida.android.cards;
 
 
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -28,6 +29,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     Button startButton;
     EditText player;
     EditText chip;
+    SharedPreferences pref;
 
     public HostFragment() {
         // Required empty public constructor
@@ -45,13 +47,26 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             @Override
             public void onClick(View v) {
                 try {
-                    JSONObject msg = new JSONObject();
-                    msg.put("command", "start_hand");
-                    JSONObject content = new JSONObject();
-                    content.put("aiPlayer", player.getText());
-                    content.put("chipsPerPlayer", chip.getText());
-                    msg.put("content", content);
-                    host.getCastmanager().sendMessage(msg);
+                    if(player.getText().length() != 0 && chip.getText().length() != 0) {
+                        // filter null input
+                        int p = Integer.parseInt(player.getText() + "");
+                        int c = Integer.parseInt(chip.getText() + "");
+                        if ((p > 0 && p < 22) && (c > 0)) {
+                            // filter the wrong input from user.
+                            // 1) 1 <= # of AI player <= 21
+                            // 2) chips cannot be negative
+                            JSONObject msg = new JSONObject();
+                            msg.put("command", "start");
+                            msg.put("aiPlayer", player.getText());
+                            msg.put("chipsPerPlayer", chip.getText());
+                            host.getCastmanager().sendMessage(msg);
+                        } else {
+                            Toast.makeText(getActivity(), "Wrong input", Toast.LENGTH_LONG).show();
+                        }
+                    } else {
+                        Toast.makeText(getActivity(), "No inputs", Toast.LENGTH_LONG).show();
+                    }
+
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -70,25 +85,34 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-        boolean success = false;
+
+        int chips;
+        String card1, card2;
+
+
         try{
-            if (json.get("command").equals("hand")) {
-                json = json.getJSONObject("content");
-                success = json.getBoolean("success");
-            }
+            pref = getActivity().getSharedPreferences("data",0);
+            chips = json.getInt("chips");
+            card1 = json.getString("card1");
+            card2 = json.getString("card2");
+
+            SharedPreferences.Editor edit = pref.edit();
+            edit.putString("card1",card1);
+            edit.putString("card2",card2);
+            edit.putInt("chips",chips);
+            edit.commit();
             //Server acknowledges it received the information
-            if (success) {
-                HandFragment hf = new HandFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.content, hf);
-                //transaction.addToBackStack(null);
-                transaction.commit();
-            }
+
+            HandFragment hf = new HandFragment();
+            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+            transaction.replace(R.id.content, hf);
+            //transaction.addToBackStack(null);
+            transaction.commit();
+
         }
         catch (JSONException e){
             Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
-            success = false;
         }
     }
 }
