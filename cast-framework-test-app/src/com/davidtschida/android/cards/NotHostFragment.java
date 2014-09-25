@@ -52,12 +52,16 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
         int chips;
         String card1, card2;
+        JSONObject content;
 
         try{
             pref = getActivity().getSharedPreferences("data",0);
-            chips = json.getInt("chips");
-            card1 = json.getString("card1");
-            card2 = json.getString("card2");
+
+            content = json.getJSONObject("content");
+
+            chips = content.getInt("chips");
+            card1 = content.getString("card1");
+            card2 = content.getString("card2");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1",card1);

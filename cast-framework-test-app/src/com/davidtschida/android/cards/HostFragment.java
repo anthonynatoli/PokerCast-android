@@ -65,9 +65,10 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                         } else {
 
                             JSONObject msg = new JSONObject();
-                            msg.put("command", "start");
-                            msg.put("aiPlayer", p);
-                            msg.put("chipsPerPlayer", c);
+                            msg.put("command","start_hand");
+                            JSONObject content = new JSONObject();
+                            content.put("aiPlayer", p);
+                            content.put("chipsPerPlayer", c);
                             host.getCastmanager().sendMessage(msg);
                             ProgressDialog.show(getActivity(), "Loading", "Waiting for players...");
                         }
@@ -97,13 +98,14 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
 
         int chips;
         String card1, card2;
-
+        JSONObject content;
 
         try {
             pref = getActivity().getSharedPreferences("data", 0);
-            chips = json.getInt("chips");
-            card1 = json.getString("card1");
-            card2 = json.getString("card2");
+            content = json.getJSONObject("content");
+            chips = content.getInt("chips");
+            card1 = content.getString("card1");
+            card2 = content.getString("card2");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1", card1);
