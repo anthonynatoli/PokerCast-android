@@ -85,18 +85,14 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public void disableButtons() {
         foldButton.setEnabled(false);
         betButton.setEnabled(false);
-        hideButton.setEnabled(false);
         turnBox.setEnabled(false);
         turnBox.setVisibility(View.INVISIBLE);
         foldButton.setBackgroundResource(R.drawable.grey_shape);
         betButton.setBackgroundResource(R.drawable.grey_shape);
-        hideButton.setBackgroundResource(R.drawable.grey_shape);
         foldButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         betButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
-        hideButton.getBackground().setColorFilter(Color.GRAY, PorterDuff.Mode.MULTIPLY);
         betButton.getBackground().setAlpha(170);
         foldButton.getBackground().setAlpha(170);
-        hideButton.getBackground().setAlpha(170);
     }
     public void enableButtons() {
         turnBox.setVisibility(View.VISIBLE);
