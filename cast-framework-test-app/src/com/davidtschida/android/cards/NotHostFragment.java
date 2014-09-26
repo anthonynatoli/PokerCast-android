@@ -79,6 +79,8 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
             HandFragment hf = new HandFragment();
             FragmentTransaction transaction = getFragmentManager().beginTransaction();
             transaction.replace(R.id.content, hf);
+            host.getCastmanager().setConnectedListener(hf);
+            host.getCastmanager().setOnMessageRecievedListener(hf);
             //transaction.addToBackStack(null);
             transaction.commit();
 
