@@ -313,7 +313,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         }
         catch (JSONException e){
-            Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
 
