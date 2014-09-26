@@ -78,6 +78,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public void setChip(int num) {
         Log.e("Setting Chip", "SETTING");
         num_chip = num;
+        chipView.setText("HEHEHE");
+        Log.e("text", chipView.getText()+"");
         chipView.setText("X "+num_chip);
 
     }
@@ -260,7 +262,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-                                    setChip(num_chip-last_bet);
+                                    setChip(num_chip-Integer.parseInt(currentBet));
                                 }
                             });
                             confirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
