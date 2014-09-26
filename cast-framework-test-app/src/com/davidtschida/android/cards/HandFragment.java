@@ -165,8 +165,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             public void onClick(View view) {
                 //Fold implementation
                 try {
-                    JSONObject o = new JSONObject("{ \"command\": \"my_turn\", \"bet\": \"-1\" }");
-                    host.getCastmanager().sendMessage(o);
+                    JSONObject msg = new JSONObject();
+                    msg.put("command","my_turn");
+                    JSONObject content = new JSONObject();
+                    content.put("bet", -1);
+                    msg.put("content",content);
+                    host.getCastmanager().sendMessage(msg);
 
                 } catch(JSONException e) {
                     e.printStackTrace();
@@ -234,8 +238,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     Toast.makeText(getActivity(), "Betting " + currentBet, Toast.LENGTH_SHORT).show();
                                     try {
-                                        JSONObject o = new JSONObject("{ \"command\": \"my_turn\", \"bet\": \"" + currentBet + "\" }");
-                                        host.getCastmanager().sendMessage(o);
+                                        JSONObject msg = new JSONObject();
+                                        msg.put("command","my_turn");
+                                        JSONObject content = new JSONObject();
+                                        content.put("bet", Integer.parseInt(currentBet));
+                                        msg.put("content",content);
+                                        host.getCastmanager().sendMessage(msg);
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
@@ -293,12 +301,18 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         String winner_id;
         int pot_value;
 
+
+
+
         try{
+            JSONObject content = json.getJSONObject("content");
+            Log.e("message", "received");
             command = json.getString("command");
             //Turn message
             if(command.equals("turn")) {
-                this.last_bet = json.getInt("last_bet");
-                turnPlayerID = json.getString("player_id");
+                Log.e("Turn", "Received");
+                this.last_bet = content.getInt("last_bet");
+                turnPlayerID = content.getString("player_id");
                 if (player_id != null && player_id.equals(turnPlayerID)) {
                     //It's my turn!
                     enableButtons();
@@ -306,8 +320,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             }
             else if(command.equals("end_hand")) {
                 //End_hand message
-                winner_id = json.getString("winner_id");
-                pot_value = json.getInt("pot_value");
+                winner_id = content.getString("winner_id");
+                pot_value = content.getInt("pot_value");
             }
 
 

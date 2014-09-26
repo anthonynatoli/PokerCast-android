@@ -20,7 +20,7 @@
             />
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="65dp"
             android:layout_alignParentTop="true"
             android:orientation="horizontal"
             android:weightSum="1">
@@ -54,7 +54,7 @@
                     android:layout_height="match_parent"
                     android:textColor="#fff"
                     android:text="X 50"
-                    android:textSize="50sp"
+                    android:textSize="30sp"
                     android:gravity="center_vertical"/>
             </LinearLayout>
         </LinearLayout>
@@ -62,7 +62,7 @@
             android:layout_width="290dp"
             android:layout_height="330dp"
             android:id="@+id/card1"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:layout_marginLeft="50dp"
             android:src="@drawable/c1"
 
