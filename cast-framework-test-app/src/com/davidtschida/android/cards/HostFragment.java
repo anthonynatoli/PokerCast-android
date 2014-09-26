@@ -1,11 +1,11 @@
 package com.davidtschida.android.cards;
 
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -106,7 +106,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-
+        int chips = Integer.parseInt(chip.getText().toString());
         String card1, card2;
         JSONObject content;
 
@@ -119,6 +119,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1", card1);
             edit.putString("card2", card2);
+            edit.putInt("chips", chips);
             edit.commit();
             //Server acknowledges it received the information
 

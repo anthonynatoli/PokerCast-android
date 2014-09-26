@@ -55,6 +55,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public HandFragment() {
     }
     public void setFirstCard(String name) {
+        Log.e("Setting card", "first");
         firstCard = name;
         //set image here
         Resources res = getResources();
@@ -64,6 +65,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
     }
     public void setSecondCard(String name) {
+        Log.e("Setting card", "second");
         secondCard = name;
         //set image here
         Resources res = getResources();
@@ -73,6 +75,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
     }
     public void setChip(int num) {
+        Log.e("Setting Chip", "SETTING");
         num_chip = num;
         chipView.setText("X "+num_chip);
 
@@ -123,24 +126,24 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             JSONObject msg = new JSONObject();
             msg.put("command", "hand_received");
             host.getCastmanager().sendMessage(msg);
-        } catch(Exception e) { e.printStackTrace(); }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         //get Player_id from sharedPreference
 
         mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         player_id = mPrefs.getString("player_id", null);
-        if(mPrefs.getString("card1", null) != null)
+        if (mPrefs.getString("card1", null) != null) {
+            Log.e("Card1", mPrefs.getString("card1", null));
             setFirstCard(mPrefs.getString("card1", null));
-        else {
-            //Log.e("Error", "Something is wrong with firstcard");
         }
-        if(mPrefs.getString("card2", null) != null)
-            setFirstCard(mPrefs.getString("card2", null));
-        else {
-            //Log.e("Error", "Something is wrong with Second card");
+        if (mPrefs.getString("card2", null) != null) {
+            setSecondCard(mPrefs.getString("card2", null));
+            Log.e("Card2", mPrefs.getString("card2", null));
         }
         setChip(mPrefs.getInt("chips", 0));
-
+        Log.e("chip",mPrefs.getInt("chips", 0)+"");
         //Disable buttons unless it's my turn
         disableButtons();
 
@@ -250,12 +253,13 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                         msg.put("command","my_turn");
                                         JSONObject content = new JSONObject();
                                         content.put("bet", Integer.parseInt(currentBet));
-                                        msg.put("content",content);
+                                        msg.put("content", content);
                                         host.getCastmanager().sendMessage(msg);
 
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+                                    setChip(num_chip-last_bet);
                                 }
                             });
                             confirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
