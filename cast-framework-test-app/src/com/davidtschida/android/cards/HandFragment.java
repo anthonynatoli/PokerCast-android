@@ -231,7 +231,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                             AlertDialog.Builder error = new AlertDialog.Builder(getActivity());
                             error.setTitle("BET");
                             error.setMessage("You should bet more than the last bet.");
-                            error.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            error.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
 
                                 }
