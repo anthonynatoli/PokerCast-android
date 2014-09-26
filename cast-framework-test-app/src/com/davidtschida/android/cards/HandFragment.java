@@ -299,6 +299,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         //Message for end_hand
         String winner_id;
+        String winner_name;
         int pot_value;
 
 
@@ -321,7 +322,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             else if(command.equals("end_hand")) {
                 //End_hand message
                 winner_id = content.getString("winner_id");
+                winner_name = content.getString("winner_name");
                 pot_value = content.getInt("pot_value");
+                Log.e("Winner", winner_name);
+                Log.e("Pot Value", pot_value+"");
             }
 
 

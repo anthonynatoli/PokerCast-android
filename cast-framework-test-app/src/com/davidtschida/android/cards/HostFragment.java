@@ -2,6 +2,7 @@ package com.davidtschida.android.cards;
 
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -49,6 +51,10 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //hide keyboard
+                InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
+                keyboard.hideSoftInputFromWindow(chip.getWindowToken(), 0);
+
                 try {
                     if (player.getText().length() == 0) {
                         Toast.makeText(getActivity(), "Enter the number of AI players", Toast.LENGTH_LONG).show();
