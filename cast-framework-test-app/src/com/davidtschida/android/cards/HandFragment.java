@@ -341,6 +341,15 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 winner_name = content.getString("winner_name");
                 pot_value = content.getInt("pot_value");
 
+                AlertDialog.Builder winner = new AlertDialog.Builder(getActivity());
+                winner.setTitle("Winner");
+                winner.setMessage("The winner is "+winner_name+".");
+                winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+
+                    }
+                });
+                winner.show();
                 //Log.e("Winner", winner_name);
                 //Log.e("Pot Value", pot_value+"");
             }

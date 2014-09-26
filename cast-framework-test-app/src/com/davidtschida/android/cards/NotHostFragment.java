@@ -2,15 +2,14 @@ package com.davidtschida.android.cards;
 
 
 
+import android.app.Fragment;
 import android.app.ProgressDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
@@ -41,7 +40,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
         pref = getActivity().getSharedPreferences("data",0);
 
-        pd = ProgressDialog.show(this.getActivity(), "Loading", "Waiting for players...");
+        pd = ProgressDialog.show(this.getActivity(), "Waiting", "Waiting for other players...");
 
         return rootView;
     }

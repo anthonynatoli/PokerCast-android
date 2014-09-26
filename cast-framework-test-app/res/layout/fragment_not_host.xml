@@ -15,9 +15,5 @@
         android:scaleType="fitXY"
         android:src="@drawable/table_resized" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Not Host Fragment"/>
 
 </RelativeLayout>
