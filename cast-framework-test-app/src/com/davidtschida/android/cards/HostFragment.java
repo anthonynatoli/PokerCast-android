@@ -43,6 +43,9 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
         player = (EditText) rootView.findViewById(R.id.aiPlayer);
         chip = (EditText) rootView.findViewById(R.id.chips);
         startButton = (Button) rootView.findViewById(R.id.start);
+
+        pref = getActivity().getSharedPreferences("data", 0);
+
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -102,7 +105,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
         JSONObject content;
 
         try {
-            pref = getActivity().getSharedPreferences("data", 0);
+
             content = json.getJSONObject("content");
             chips = content.getInt("chips");
             card1 = content.getString("card1");

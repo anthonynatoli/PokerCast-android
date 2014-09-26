@@ -38,6 +38,9 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_not_host, container, false);
+
+        pref = getActivity().getSharedPreferences("data",0);
+
         pd = ProgressDialog.show(this.getActivity(), "Loading", "Waiting for players...");
 
         return rootView;
@@ -56,7 +59,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
         JSONObject content;
 
         try{
-            pref = getActivity().getSharedPreferences("data",0);
+
 
             content = json.getJSONObject("content");
 
