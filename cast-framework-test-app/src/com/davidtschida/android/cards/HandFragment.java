@@ -119,13 +119,13 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         last_bet = 0;
 
         //get Player_id from sharedPreference
-        /*
+
         mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         player_id = mPrefs.getString("player_id", null);
         setFirstCard(mPrefs.getString("card1", null));
         setSecondCard(mPrefs.getString("card2", null));
         setChip(mPrefs.getInt("chips", 0));
-        */
+
         //Disable buttons unless it's my turn
         disableButtons();
 

@@ -127,7 +127,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             transaction.commit();
 
         } catch (JSONException e) {
-            Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }

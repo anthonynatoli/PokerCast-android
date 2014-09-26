@@ -84,7 +84,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
         }
         catch (JSONException e){
-            Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
+            //Toast.makeText(getActivity(), "Server communication error", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
     }
