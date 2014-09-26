@@ -151,7 +151,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     card2.setRotation(0);
                     isRotated = false;
                 }
-                enableButtons();
             }
         });
         foldButton.setOnClickListener(new View.OnClickListener() {
