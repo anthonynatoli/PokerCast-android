@@ -78,7 +78,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public void setChip(int num) {
         Log.e("Setting Chip", "SETTING");
         num_chip = num;
-        chipView.setText("HEHEHE");
         Log.e("text", chipView.getText()+"");
         chipView.setText("X "+num_chip);
 

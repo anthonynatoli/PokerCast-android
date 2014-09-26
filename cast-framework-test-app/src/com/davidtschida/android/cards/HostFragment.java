@@ -126,6 +126,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             content = json.getJSONObject("content");
             card1 = content.getString("card1");
             card2 = content.getString("card2");
+            chips = content.getInt("chips");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1", card1);
