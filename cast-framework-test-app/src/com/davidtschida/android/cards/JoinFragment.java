@@ -3,6 +3,7 @@ package com.davidtschida.android.cards;
 /**
  * Created by Joe Koncel on 9/17/2014.
  */
+
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.PorterDuff;
@@ -15,6 +16,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 public class JoinFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
     Button sendButton;
     EditText playerName;
+    TextView connection_msg;
     SharedPreferences mPrefs;
     Boolean connected;
     //MediaRouteButton mrb;
@@ -44,6 +47,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         connected = false;
         playerName = (EditText) rootView.findViewById(R.id.player_name);
         sendButton = (Button) rootView.findViewById(R.id.join_button);
+        connection_msg = (TextView) rootView.findViewById(R.id.connection_msg);
 
         sendButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,12 +179,14 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     public void onCastConnected() {
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
         connected = true;
+        connection_msg.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void onCastDisconnected() {
         connected = false;
         Toast.makeText(getActivity(), "Disconnected!", Toast.LENGTH_LONG).show();
+        connection_msg.setVisibility(View.VISIBLE);
     }
 
 }
