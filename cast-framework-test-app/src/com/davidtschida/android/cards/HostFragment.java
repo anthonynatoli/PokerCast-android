@@ -117,7 +117,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
-        int chips = Integer.parseInt(chip.getText().toString());
+        int chips = 0;
         String card1, card2;
         JSONObject content;
 
