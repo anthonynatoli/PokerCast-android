@@ -314,6 +314,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 Log.e("Turn", "Received");
                 this.last_bet = content.getInt("last_bet");
                 turnPlayerID = content.getString("player_id");
+                Log.e("Player", player_id);
+                Log.e("turn Player", turnPlayerID);
                 if (player_id != null && player_id.equals(turnPlayerID)) {
                     //It's my turn!
                     enableButtons();
@@ -324,6 +326,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 winner_id = content.getString("winner_id");
                 winner_name = content.getString("winner_name");
                 pot_value = content.getInt("pot_value");
+
                 Log.e("Winner", winner_name);
                 Log.e("Pot Value", pot_value+"");
             }
