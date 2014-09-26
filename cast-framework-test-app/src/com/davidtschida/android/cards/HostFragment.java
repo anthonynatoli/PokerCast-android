@@ -73,6 +73,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                             JSONObject content = new JSONObject();
                             content.put("aiPlayer", p);
                             content.put("chipsPerPlayer", c);
+                            msg.put("content",content);
                             host.getCastmanager().sendMessage(msg);
                             pd = ProgressDialog.show(getActivity(), "Loading", "Waiting for the server...");
                         }
