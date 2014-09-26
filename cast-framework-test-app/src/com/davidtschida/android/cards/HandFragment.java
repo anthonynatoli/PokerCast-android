@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -340,4 +341,16 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public void onCastConnected() {
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onCastDisconnected() {
+        JoinFragment jf = new JoinFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content, jf);
+        host.getCastmanager().setConnectedListener(jf);
+        host.getCastmanager().setOnMessageRecievedListener(jf);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }

@@ -50,6 +50,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
             @Override
             public void onClick(View v) {
                 //Toast.makeText(getActivity(), playerName.getText(), Toast.LENGTH_LONG).show();
+
                 if (connected == false){
                     Toast.makeText(getActivity(), "Please first connect to a Chromecast", Toast.LENGTH_LONG).show();
                     return;
@@ -181,4 +182,11 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
         connected = true;
     }
+
+    @Override
+    public void onCastDisconnected() {
+        connected = false;
+        Toast.makeText(getActivity(), "Disconnected!", Toast.LENGTH_LONG).show();
+    }
+
 }

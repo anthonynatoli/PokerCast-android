@@ -90,4 +90,15 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
             e.printStackTrace();
         }
     }
+
+    @Override
+    public void onCastDisconnected() {
+        JoinFragment jf = new JoinFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content, jf);
+        host.getCastmanager().setConnectedListener(jf);
+        host.getCastmanager().setOnMessageRecievedListener(jf);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+    }
 }

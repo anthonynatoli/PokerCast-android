@@ -3,6 +3,7 @@ package com.davidtschida.android.cast.framework;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.MediaRouteActionProvider;
 import android.support.v7.app.MediaRouteButton;
@@ -13,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.davidtschida.android.cards.JoinFragment;
 import com.davidtschida.android.cards.R;
 import com.google.android.gms.cast.Cast;
 import com.google.android.gms.cast.CastDevice;
@@ -53,9 +55,11 @@ public class CastManager {
     private String mSessionId;
     private OnMessageReceivedListener mMessageListener;
     private OnCastConnectedListener mConnectedListener;
+    private Fragment fragmentToStart;
 
     public CastManager(Context c) {
         this.mContext = c;
+        fragmentToStart = null;
         init();
     }
 
@@ -261,6 +265,7 @@ public class CastManager {
                         Log.e(TAG, "Exception while removing channel", e);
                     }
                     mApiClient.disconnect();
+                    mConnectedListener.onCastDisconnected();
                 }
                 mApplicationStarted = false;
             }
@@ -269,6 +274,10 @@ public class CastManager {
         mSelectedDevice = null;
         mWaitingForReconnect = false;
         mSessionId = null;
+    }
+
+    public void setFragmentToFollowDisconnect(Fragment f){
+        fragmentToStart = f;
     }
 
     /**
