@@ -118,21 +118,18 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
 
-        int chips;
         String card1, card2;
         JSONObject content;
 
         try {
 
             content = json.getJSONObject("content");
-            chips = content.getInt("chips");
             card1 = content.getString("card1");
             card2 = content.getString("card2");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1", card1);
             edit.putString("card2", card2);
-            edit.putInt("chips", chips);
             edit.commit();
             //Server acknowledges it received the information
 
