@@ -53,7 +53,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
     @Override
     public void onMessageRecieved(JSONObject json) {
 
-        int chips;
+        int chips = 0;
         String card1, card2;
         JSONObject content;
 
@@ -64,10 +64,12 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
             card1 = content.getString("card1");
             card2 = content.getString("card2");
+            chips = content.getInt("chips");
 
             SharedPreferences.Editor edit = pref.edit();
             edit.putString("card1",card1);
             edit.putString("card2",card2);
+            edit.putInt("chips", chips);
             edit.commit();
             //Server acknowledges it received the information
 

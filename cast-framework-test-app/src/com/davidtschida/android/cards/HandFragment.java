@@ -317,15 +317,11 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         try{
             JSONObject content = json.getJSONObject("content");
-            //Log.e("message", "received");
             command = json.getString("command");
             //Turn message
             if(command.equals("turn")) {
-                //Log.e("Turn", "Received");
                 this.last_bet = content.getInt("last_bet");
                 turnPlayerID = content.getString("player_id");
-                //Log.e("Player", player_id);
-                //Log.e("turn Player", turnPlayerID);
                 if (player_id != null && player_id.equals(turnPlayerID)) {
                     //It's my turn!
                     enableButtons();
@@ -347,7 +343,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                         transaction.replace(R.id.content, jf);
                         host.getCastmanager().setConnectedListener(jf);
                         host.getCastmanager().setOnMessageRecievedListener(jf);
-                        //transaction.addToBackStack(null);
                         transaction.commit();
                     }
                 });

@@ -53,7 +53,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:textColor="#fff"
-                    android:text="X 50"
+                    android:text="X"
                     android:textSize="30sp"
                     android:gravity="center_vertical"/>
             </LinearLayout>
