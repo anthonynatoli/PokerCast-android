@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.util.Log;
@@ -328,6 +329,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 //Log.e("turn Player", turnPlayerID);
                 if (player_id != null && player_id.equals(turnPlayerID)) {
                     //It's my turn!
+                    Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                    vib.vibrate(400);
                     enableButtons();
                 }
             }
