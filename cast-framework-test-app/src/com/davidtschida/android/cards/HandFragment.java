@@ -267,6 +267,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                             });
                             confirmation.show();
                         }
+                        disableButtons();
 
                     }
                 });
@@ -277,7 +278,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 });
 
                 alert.show();
-                disableButtons();
             }
         });
         hideButton.setOnClickListener(new View.OnClickListener() {
@@ -352,8 +352,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     }
                 });
                 winner.show();
-                //Log.e("Winner", winner_name);
-                //Log.e("Pot Value", pot_value+"");
             }
 
 
