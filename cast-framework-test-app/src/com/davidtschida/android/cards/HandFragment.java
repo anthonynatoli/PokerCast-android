@@ -11,6 +11,7 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -122,8 +123,14 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         player_id = mPrefs.getString("player_id", null);
-        setFirstCard(mPrefs.getString("card1", null));
-        setSecondCard(mPrefs.getString("card2", null));
+        if(mPrefs.getString("card1", null) != null)
+            setFirstCard(mPrefs.getString("card1", null));
+        else
+            Log.e("Error", "Something is wrong with firstcard");
+        if(mPrefs.getString("card2", null) != null)
+            setFirstCard(mPrefs.getString("card2", null));
+        else
+            Log.e("Error", "Something is wrong with Second card");
         setChip(mPrefs.getInt("chips", 0));
 
         //Disable buttons unless it's my turn
