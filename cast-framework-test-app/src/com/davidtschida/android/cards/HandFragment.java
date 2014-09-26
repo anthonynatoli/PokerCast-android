@@ -119,6 +119,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         player_id = null;
         last_bet = 0;
 
+        try {
+            JSONObject msg = new JSONObject();
+            msg.put("commend", "hand_received");
+            host.getCastmanager().sendMessage(msg);
+        } catch(Exception e) { e.printStackTrace(); }
+
         //get Player_id from sharedPreference
 
         mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
