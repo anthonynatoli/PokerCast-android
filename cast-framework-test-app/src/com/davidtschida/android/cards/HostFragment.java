@@ -71,7 +71,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                             JSONObject msg = new JSONObject();
                             msg.put("command","start_hand");
                             JSONObject content = new JSONObject();
-                            content.put("aiPlayer", p);
+                            content.put("aiPlayers", p);
                             content.put("chipsPerPlayer", c);
                             msg.put("content",content);
                             host.getCastmanager().sendMessage(msg);
