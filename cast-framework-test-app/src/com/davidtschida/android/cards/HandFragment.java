@@ -121,7 +121,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         try {
             JSONObject msg = new JSONObject();
-            msg.put("commend", "hand_received");
+            msg.put("command", "hand_received");
             host.getCastmanager().sendMessage(msg);
         } catch(Exception e) { e.printStackTrace(); }
 
