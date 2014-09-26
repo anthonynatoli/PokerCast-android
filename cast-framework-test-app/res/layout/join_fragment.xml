@@ -17,6 +17,17 @@
             android:alpha="0.4"
             android:scaleType="fitXY"
             android:src="@drawable/table_resized" />
+        <TextView
+            android:layout_centerHorizontal="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:text="Connect to Chromecast to Join the game!"
+            android:padding="8dp"
+            android:gravity="center"
+            android:layout_marginTop="90dp"
+            android:textSize="16sp"
+            android:background="@drawable/red_shape"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

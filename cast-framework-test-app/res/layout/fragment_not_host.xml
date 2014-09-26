@@ -6,8 +6,6 @@
     android:background="#000"
     tools:context="com.davidtschida.android.cards.NotHostFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
