@@ -258,6 +258,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                         e.printStackTrace();
                                     }
                                     setChip(num_chip-Integer.parseInt(currentBet));
+                                    disableButtons();
                                 }
                             });
                             confirmation.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -267,7 +268,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                             });
                             confirmation.show();
                         }
-                        disableButtons();
 
                     }
                 });
