@@ -87,4 +87,9 @@ public class PlayerScreenFragment extends CastFragment implements OnMessageRecei
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
     }
 
+    @Override
+    public void onCastDisconnected() {
+
+    }
+
 }

@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Toast;
 
 import com.davidtschida.android.cards.R;
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
@@ -65,6 +66,11 @@ public class IntroActivity extends Activity implements OnMessageReceivedListener
 
     @Override
     public void onCastConnected() {
+
+    }
+
+    @Override
+    public void onCastDisconnected() {
 
     }
 

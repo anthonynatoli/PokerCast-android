@@ -5,4 +5,5 @@ package com.davidtschida.android.cast.framework;
  */
 public interface OnCastConnectedListener {
     public void onCastConnected();
+    public void onCastDisconnected();
 }

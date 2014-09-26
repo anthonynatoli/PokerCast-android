@@ -104,6 +104,17 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
     }
 
     @Override
+    public void onCastDisconnected() {
+        JoinFragment jf = new JoinFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.content, jf);
+        host.getCastmanager().setConnectedListener(jf);
+        host.getCastmanager().setOnMessageRecievedListener(jf);
+        //transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
+    @Override
     public void onMessageRecieved(JSONObject json) {
         //Toast.makeText(getActivity(), "MOOO "+json.toString(4), Toast.LENGTH_LONG).show();
         int chips = Integer.parseInt(chip.getText().toString());

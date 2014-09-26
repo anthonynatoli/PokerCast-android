@@ -69,4 +69,9 @@ public class WelcomeFragment extends CastFragment implements OnMessageReceivedLi
     public void onCastConnected() {
         Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
     }
+
+    @Override
+    public void onCastDisconnected() {
+
+    }
 }
