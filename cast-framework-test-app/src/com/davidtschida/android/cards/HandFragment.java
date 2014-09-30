@@ -39,6 +39,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     private Button foldButton;
     private Button betButton;
     private Button hideButton;
+    private Button helpButton;
     private TextView chipView;
     private String firstCard;
     private String secondCard;
@@ -116,6 +117,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         hideButton = (Button) rootView.findViewById(R.id.hideButton);
         chipView = (TextView) rootView.findViewById(R.id.num_chip);
         turnBox = (Button) rootView.findViewById(R.id.turnBox);
+        helpButton = (Button) rootView.findViewById(R.id.help_button);
         isRotated = false;
         isHidden = false;
         player_id = null;
@@ -297,6 +299,18 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     card2.setVisibility(View.VISIBLE);
                     isHidden = false;
                 }
+            }
+        });
+        helpButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                HelpFragment hf = new HelpFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.content, hf);
+                host.getCastmanager().setConnectedListener(hf);
+                host.getCastmanager().setOnMessageRecievedListener(hf);
+                transaction.addToBackStack(null);
+                transaction.commit();
             }
         });
     }
