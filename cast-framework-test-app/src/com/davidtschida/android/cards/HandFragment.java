@@ -11,9 +11,11 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +82,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     public void setChip(int num) {
         Log.e("Setting Chip", "SETTING");
         num_chip = num;
-        Log.e("text", chipView.getText()+"");
         chipView.setText("X "+num_chip);
 
     }
@@ -110,6 +111,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_hand, container, false);
+
         card1 = (ImageView) rootView.findViewById(R.id.card1);
         card2 = (ImageView) rootView.findViewById(R.id.card2);
         foldButton = (Button) rootView.findViewById(R.id.foldButton);
