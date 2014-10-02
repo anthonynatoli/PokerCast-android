@@ -18,13 +18,13 @@
             android:scaleType="fitXY"
             android:alpha="0.4"
             />
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="65dp"
             android:layout_alignParentTop="true"
-            android:layout_marginRight="10dp"
             android:orientation="horizontal"
-            android:weightSum="1">
+            android:weightSum="1"
+            >
             <Button
                 android:id="@+id/turnBox"
                 android:layout_width="wrap_content"
@@ -38,12 +38,14 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="12dp"
                 android:alpha="0.7"
-                android:textColor="#fff"/>
+                android:textColor="#fff"
+                android:layout_weight="0.15"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                android:layout_toRightOf="@+id/turnBox">
+                android:layout_toRightOf="@+id/turnBox"
+                android:layout_weight="0.7">
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="match_parent"
@@ -59,20 +61,23 @@
                     android:textSize="30sp"
                     android:gravity="center_vertical"/>
             </LinearLayout>
-            <Button
-                android:id="@+id/help_button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:text="\?"
-                android:textStyle="bold"
-                android:layout_alignParentRight="true"
-                android:background="@drawable/circle_shape"
-                android:paddingLeft="8dp"
-                android:paddingRight="9dp"
-                android:paddingBottom="2dp"
-                android:layout_marginTop="12dp"
-                />
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_weight="0.1">
+                <Button
+                    android:id="@+id/help_button"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="\?"
+                    android:textStyle="bold"
+                    android:layout_alignParentRight="true"
+                    android:background="@drawable/circle_shape"
+                    android:gravity="center"
+                    />
+            </LinearLayout>
+        </LinearLayout>
         <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
