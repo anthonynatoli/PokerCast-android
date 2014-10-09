@@ -107,12 +107,12 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
 
                 winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        JoinFragment jf = new JoinFragment();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.content, jf);
-                        host.getCastmanager().setConnectedListener(jf);
-                        host.getCastmanager().setOnMessageRecievedListener(jf);
-                        transaction.commit();
+                        //JoinFragment jf = new JoinFragment();
+                        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        //transaction.replace(R.id.content, jf);
+                        //host.getCastmanager().setConnectedListener(jf);
+                        //host.getCastmanager().setOnMessageRecievedListener(jf);
+                        //transaction.commit();
                     }
                 });
                 winner.show();

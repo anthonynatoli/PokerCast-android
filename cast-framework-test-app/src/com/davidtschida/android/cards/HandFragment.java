@@ -393,7 +393,22 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 winner.show();
             }
             else if(command.equals("hand")) {
+
+                Toast.makeText(getActivity(), "newHand!!", Toast.LENGTH_LONG).show();
+
                 content = json.getJSONObject("content");
+                String card1 = content.getString("card1");
+                String card2 = content.getString("card2");
+                chips = content.getInt("chips");
+
+                SharedPreferences.Editor edit = mPrefs.edit();
+                edit.putString("card1", card1);
+                edit.putString("card2", card2);
+                edit.putInt("chips", chips);
+                edit.putString("hasTurn", "false");
+                edit.putString("fromHelp", "false");
+                edit.commit();
+
                 setFirstCard(content.getString("card1"));
                 setSecondCard(content.getString("card2"));
                 setChip(content.getInt("chips"));
