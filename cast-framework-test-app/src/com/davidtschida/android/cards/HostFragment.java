@@ -132,6 +132,8 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
             edit.putString("card1", card1);
             edit.putString("card2", card2);
             edit.putInt("chips", chips);
+            edit.putString("hasTurn", "false");
+            edit.putString("fromHelp", "false");
             edit.commit();
             //Server acknowledges it received the information
 

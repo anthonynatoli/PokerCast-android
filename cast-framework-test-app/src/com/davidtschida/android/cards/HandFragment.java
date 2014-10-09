@@ -56,6 +56,9 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
     private int last_bet;
 
+    private String hasTurn;
+    private String fromHelp;
+
     private SharedPreferences mPrefs;
     public HandFragment() {
     }
@@ -83,7 +86,9 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         Log.e("Setting Chip", "SETTING");
         num_chip = num;
         chipView.setText("X "+num_chip);
-
+        SharedPreferences.Editor edit = mPrefs.edit();
+        edit.putInt("chips", num);
+        edit.commit();
     }
     public void disableButtons() {
         foldButton.setEnabled(false);
@@ -125,17 +130,27 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         player_id = null;
         last_bet = 0;
 
-        try {
-            JSONObject msg = new JSONObject();
-            msg.put("command", "hand_received");
-            host.getCastmanager().sendMessage(msg);
-        } catch (Exception e) {
-            e.printStackTrace();
+        mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = mPrefs.edit();
+
+        // check if it has "turn" message
+        hasTurn = mPrefs.getString("hasTurn", null);
+        fromHelp = mPrefs.getString("fromHelp", null);
+
+        //Toast.makeText(getActivity(), "OnCreate", Toast.LENGTH_LONG).show();
+
+        if(fromHelp.equals("false")) {
+            try {
+                JSONObject msg = new JSONObject();
+                msg.put("command", "hand_received");
+                host.getCastmanager().sendMessage(msg);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
 
         //get Player_id from sharedPreference
 
-        mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         player_id = mPrefs.getString("player_id", null);
         if (mPrefs.getString("card1", null) != null) {
             Log.e("Card1", mPrefs.getString("card1", null));
@@ -150,8 +165,18 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         //Disable buttons unless it's my turn
         disableButtons();
 
-
-
+        if(fromHelp.equals("false")) {
+            disableButtons();
+        }
+        else {
+            if(hasTurn.equals("true")) {
+                enableButtons();
+                edit.putString("hasTurn","false");
+                edit.commit();
+            }
+            edit.putString("fromHelp","false");
+            edit.commit();
+        }
 
         return rootView;
     }
@@ -309,9 +334,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 HelpFragment hf = new HelpFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.content, hf);
-                //host.getCastmanager().setConnectedListener(hf);
-                //host.getCastmanager().setOnMessageRecievedListener(hf);
-                transaction.addToBackStack(null);
+                host.getCastmanager().setConnectedListener(hf);
+                host.getCastmanager().setOnMessageRecievedListener(hf);
+
+                transaction.addToBackStack("hand");
                 transaction.commit();
             }
         });
@@ -371,6 +397,17 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 setFirstCard(content.getString("card1"));
                 setSecondCard(content.getString("card2"));
                 setChip(content.getInt("chips"));
+<<<<<<< HEAD
+
+                try {
+                    JSONObject msg = new JSONObject();
+                    msg.put("command", "hand_received");
+                    host.getCastmanager().sendMessage(msg);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+=======
+>>>>>>> 0a3409a826dc1652702d7c67d12062c9c5206484
             }
 
 

@@ -38,8 +38,6 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_not_host, container, false);
 
-        pref = getActivity().getSharedPreferences("data",0);
-
         pd = ProgressDialog.show(this.getActivity(), "Waiting", "Waiting for other players...");
 
         return rootView;
@@ -70,6 +68,8 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
             edit.putString("card1",card1);
             edit.putString("card2",card2);
             edit.putInt("chips", chips);
+            edit.putString("hasTurn", "false");
+            edit.putString("fromHelp", "false");
             edit.commit();
             //Server acknowledges it received the information
 
