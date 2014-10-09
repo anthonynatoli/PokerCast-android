@@ -357,12 +357,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 winner.setMessage("The winner is "+winner_name+".");
                 winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
-                        JoinFragment jf = new JoinFragment();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.content, jf);
-                        host.getCastmanager().setConnectedListener(jf);
-                        host.getCastmanager().setOnMessageRecievedListener(jf);
-                        transaction.commit();
+                        //JoinFragment jf = new JoinFragment();
+                        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        //transaction.replace(R.id.content, jf);
+                        //host.getCastmanager().setConnectedListener(jf);
+                        //host.getCastmanager().setOnMessageRecievedListener(jf);
+                        //transaction.commit();
                     }
                 });
                 winner.show();
