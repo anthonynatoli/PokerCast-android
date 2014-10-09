@@ -328,12 +328,11 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         String winner_id;
         String winner_name;
         int pot_value;
-
-
-
+        int chips = 0;
+        JSONObject content;
 
         try{
-            JSONObject content = json.getJSONObject("content");
+            content = json.getJSONObject("content");
             command = json.getString("command");
             //Turn message
             if(command.equals("turn")) {
@@ -366,6 +365,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     }
                 });
                 winner.show();
+            }
+            else if(command.equals("hand")) {
+                content = json.getJSONObject("content");
+                setFirstCard(content.getString("card1"));
+                setSecondCard(content.getString("card2"));
+                setChip(content.getInt("chips"));
             }
 
 
