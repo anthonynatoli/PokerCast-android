@@ -397,7 +397,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 setFirstCard(content.getString("card1"));
                 setSecondCard(content.getString("card2"));
                 setChip(content.getInt("chips"));
-<<<<<<< HEAD
 
                 try {
                     JSONObject msg = new JSONObject();
@@ -406,8 +405,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-=======
->>>>>>> 0a3409a826dc1652702d7c67d12062c9c5206484
             }
 
 
