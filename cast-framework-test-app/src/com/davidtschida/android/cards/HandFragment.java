@@ -394,7 +394,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             }
             else if(command.equals("hand")) {
 
-                Toast.makeText(getActivity(), "newHand!!", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "New Hands", Toast.LENGTH_LONG).show();
 
                 content = json.getJSONObject("content");
                 String card1 = content.getString("card1");
