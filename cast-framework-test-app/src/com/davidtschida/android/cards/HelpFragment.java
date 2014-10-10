@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.davidtschida.android.cast.framework.OnCastConnectedListener;
 import com.davidtschida.android.cast.framework.OnMessageReceivedListener;
@@ -27,6 +28,7 @@ import org.json.JSONObject;
 public class HelpFragment extends CastFragment implements OnMessageReceivedListener, OnCastConnectedListener {
 
     private SharedPreferences mPrefs;
+    private String player_id;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -35,6 +37,7 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
         rootView.requestFocus();
 
         mPrefs = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
+        player_id = mPrefs.getString("player_id", null);
         SharedPreferences.Editor edit = mPrefs.edit();
         edit.putString("fromHelp","true");
         edit.commit();
@@ -94,6 +97,15 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
                 SharedPreferences.Editor edit = mPrefs.edit();
                 edit.putString("hasTurn","true");
                 edit.commit();
+
+                turnPlayerID = content.getString("player_id");
+                if (player_id != null && player_id.equals(turnPlayerID)) {
+                    //It's my turn!
+                    Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
+                    vib.vibrate(400);
+                    Toast.makeText(getActivity(), "Your turn.", Toast.LENGTH_LONG).show();
+                }
+
 
             } else if(command.equals("end_hand")) {
                 //End_hand message
