@@ -4,6 +4,7 @@ package com.davidtschida.android.cards;
 
 import android.app.Fragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -37,7 +38,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View rootView = inflater.inflate(R.layout.fragment_not_host, container, false);
-
+        pref = getActivity().getSharedPreferences("data", Context.MODE_PRIVATE);
         pd = ProgressDialog.show(this.getActivity(), "Waiting", "Waiting for other players...");
 
         return rootView;
