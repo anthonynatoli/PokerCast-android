@@ -4,12 +4,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center">
+    android:gravity="center"
+    android:background="@drawable/table_resized">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+        android:layout_height="wrap_content">
+
         <TextView
             android:id="@+id/straight_flush_text"
             android:layout_width="wrap_content"
@@ -18,7 +19,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -26,8 +29,8 @@
             android:src="@drawable/s10"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -35,8 +38,8 @@
             android:src="@drawable/s9"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/sfcard1"
-            />
+            android:layout_alignTop="@id/sfcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -44,8 +47,8 @@
             android:src="@drawable/s8"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/sfcard1"
-            />
+            android:layout_alignBottom="@id/sfcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -53,8 +56,8 @@
             android:src="@drawable/s7"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/sfcard1"
-            />
+            android:layout_alignBottom="@id/sfcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -62,14 +65,14 @@
             android:src="@drawable/s6"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/sfcard1"
-            />
+            android:layout_alignBottom="@id/sfcard1" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/four_of_a_kind_text"
             android:layout_width="wrap_content"
@@ -78,7 +81,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -86,8 +91,8 @@
             android:src="@drawable/c1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -95,8 +100,8 @@
             android:src="@drawable/s1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/fokcard1"
-            />
+            android:layout_alignTop="@id/fokcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -104,8 +109,8 @@
             android:src="@drawable/d1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/fokcard1"
-            />
+            android:layout_alignBottom="@id/fokcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -113,8 +118,8 @@
             android:src="@drawable/h1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/fokcard1"
-            />
+            android:layout_alignBottom="@id/fokcard1" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -122,14 +127,14 @@
             android:src="@drawable/c4"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/fokcard1"
-            />
+            android:layout_alignBottom="@id/fokcard1" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/full_house_text"
             android:layout_width="wrap_content"
@@ -138,7 +143,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -146,8 +153,8 @@
             android:src="@drawable/h7"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -155,8 +162,8 @@
             android:src="@drawable/s7"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1fh"
-            />
+            android:layout_alignTop="@id/card1fh" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -164,8 +171,8 @@
             android:src="@drawable/d7"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1fh"
-            />
+            android:layout_alignBottom="@id/card1fh" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -173,8 +180,8 @@
             android:src="@drawable/c3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1fh"
-            />
+            android:layout_alignBottom="@id/card1fh" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -182,14 +189,14 @@
             android:src="@drawable/s3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1fh"
-            />
+            android:layout_alignBottom="@id/card1fh" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/flush_text"
             android:layout_width="wrap_content"
@@ -198,7 +205,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -206,8 +215,8 @@
             android:src="@drawable/d1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -215,8 +224,8 @@
             android:src="@drawable/d3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1f"
-            />
+            android:layout_alignTop="@id/card1f" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -224,8 +233,8 @@
             android:src="@drawable/d6"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1f"
-            />
+            android:layout_alignBottom="@id/card1f" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -233,8 +242,8 @@
             android:src="@drawable/d9"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1f"
-            />
+            android:layout_alignBottom="@id/card1f" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -242,14 +251,14 @@
             android:src="@drawable/d10"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1f"
-            />
+            android:layout_alignBottom="@id/card1f" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/straight_text"
             android:layout_width="wrap_content"
@@ -258,7 +267,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -266,8 +277,8 @@
             android:src="@drawable/c1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -275,8 +286,8 @@
             android:src="@drawable/d2"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1s"
-            />
+            android:layout_alignTop="@id/card1s" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -284,8 +295,8 @@
             android:src="@drawable/s3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1s"
-            />
+            android:layout_alignBottom="@id/card1s" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -293,8 +304,8 @@
             android:src="@drawable/c4"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1s"
-            />
+            android:layout_alignBottom="@id/card1s" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -302,14 +313,14 @@
             android:src="@drawable/h5"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1s"
-            />
+            android:layout_alignBottom="@id/card1s" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/three_of_a_kind_text"
             android:layout_width="wrap_content"
@@ -318,7 +329,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -326,8 +339,8 @@
             android:src="@drawable/d5"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -335,8 +348,8 @@
             android:src="@drawable/c5"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1tok"
-            />
+            android:layout_alignTop="@id/card1tok" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -344,8 +357,8 @@
             android:src="@drawable/s5"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1tok"
-            />
+            android:layout_alignBottom="@id/card1tok" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -353,8 +366,8 @@
             android:src="@drawable/s1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1tok"
-            />
+            android:layout_alignBottom="@id/card1tok" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -362,14 +375,14 @@
             android:src="@drawable/h9"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1tok"
-            />
+            android:layout_alignBottom="@id/card1tok" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/two_pair_text"
             android:layout_width="wrap_content"
@@ -378,7 +391,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -386,8 +401,8 @@
             android:src="@drawable/h3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -395,8 +410,8 @@
             android:src="@drawable/d3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1tp"
-            />
+            android:layout_alignTop="@id/card1tp" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -404,8 +419,8 @@
             android:src="@drawable/s6"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1tp"
-            />
+            android:layout_alignBottom="@id/card1tp" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -413,8 +428,8 @@
             android:src="@drawable/d6"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1tp"
-            />
+            android:layout_alignBottom="@id/card1tp" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -422,14 +437,14 @@
             android:src="@drawable/s10"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1tp"
-            />
+            android:layout_alignBottom="@id/card1tp" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/one_pair_text"
             android:layout_width="wrap_content"
@@ -438,7 +453,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -446,8 +463,8 @@
             android:src="@drawable/s1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -455,8 +472,8 @@
             android:src="@drawable/c1"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1op"
-            />
+            android:layout_alignTop="@id/card1op" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -464,8 +481,8 @@
             android:src="@drawable/s7"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1op"
-            />
+            android:layout_alignBottom="@id/card1op" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -473,8 +490,8 @@
             android:src="@drawable/h3"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1op"
-            />
+            android:layout_alignBottom="@id/card1op" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -482,14 +499,14 @@
             android:src="@drawable/s9"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1op"
-            />
+            android:layout_alignBottom="@id/card1op" />
     </RelativeLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp">
+
         <TextView
             android:id="@+id/high_card_text"
             android:layout_width="wrap_content"
@@ -498,7 +515,9 @@
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="17dp"
             android:textSize="20sp"
-            android:layout_centerVertical="true"/>
+            android:textColor="#fff"
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -506,8 +525,8 @@
             android:src="@drawable/hk"
             android:layout_alignParentRight="true"
             android:layout_marginRight="165dp"
-            android:layout_centerVertical="true"
-            />
+            android:layout_centerVertical="true" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -515,8 +534,8 @@
             android:src="@drawable/h6"
             android:layout_alignParentRight="true"
             android:layout_marginRight="128dp"
-            android:layout_alignTop="@id/card1hc"
-            />
+            android:layout_alignTop="@id/card1hc" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -524,8 +543,8 @@
             android:src="@drawable/s2"
             android:layout_alignParentRight="true"
             android:layout_marginRight="91dp"
-            android:layout_alignBottom="@id/card1hc"
-            />
+            android:layout_alignBottom="@id/card1hc" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -533,8 +552,8 @@
             android:src="@drawable/s10"
             android:layout_alignParentRight="true"
             android:layout_marginRight="54dp"
-            android:layout_alignBottom="@id/card1hc"
-            />
+            android:layout_alignBottom="@id/card1hc" />
+
         <ImageView
             android:layout_width="37dp"
             android:layout_height="45dp"
@@ -542,8 +561,7 @@
             android:src="@drawable/d4"
             android:layout_alignParentRight="true"
             android:layout_marginRight="17dp"
-            android:layout_alignBottom="@id/card1hc"
-            />
+            android:layout_alignBottom="@id/card1hc" />
     </RelativeLayout>
 
 </LinearLayout>
