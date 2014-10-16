@@ -304,8 +304,7 @@ public class CastManager {
                 Log.e(TAG, "Exception while sending message", e);
             }
         } else {
-            Toast.makeText(mContext, message, Toast.LENGTH_SHORT)
-                    .show();
+            //Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show();
         }
     }
 

@@ -46,7 +46,7 @@ public class NotHostFragment extends CastFragment implements OnMessageReceivedLi
 
     @Override
     public void onCastConnected() {
-        Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
     }
 
     @Override

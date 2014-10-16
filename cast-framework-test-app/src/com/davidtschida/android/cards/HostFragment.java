@@ -57,10 +57,10 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
 
                 try {
                     if (player.getText().length() == 0) {
-                        Toast.makeText(getActivity(), "Enter the number of AI players", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Enter the # of AI players", Toast.LENGTH_LONG).show();
                         // filter null input for # players
                     } else if (chip.getText().length() == 0) {
-                        Toast.makeText(getActivity(), "Enter the amount of chips", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getActivity(), "Enter the # of chips", Toast.LENGTH_LONG).show();
                         // filter null input for chips
                     } else {
                         int p = Integer.parseInt(player.getText().toString());
@@ -71,7 +71,7 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                             Toast.makeText(getActivity(), "Please enter the valid input(# of AI players).", Toast.LENGTH_LONG).show();
                         } else if(c <= 0) {
                             // 2) chips cannot be negative
-                            Toast.makeText(getActivity(), "Please enter the valid input(Amount of chips). ", Toast.LENGTH_LONG).show();
+                            Toast.makeText(getActivity(), "Please enter the valid input(# of chips). ", Toast.LENGTH_LONG).show();
                         } else {
 
                             JSONObject msg = new JSONObject();
