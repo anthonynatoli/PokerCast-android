@@ -329,21 +329,18 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         hideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-                /*//Hide Implementation
-                if(!isHidden) {
+                //Hide Implementation
+                if (!isHidden) {
                     hideButton.setText("UNDO");
                     card1.setVisibility(View.INVISIBLE);
                     card2.setVisibility(View.INVISIBLE);
                     isHidden = true;
-                }
-                else {
+                } else {
                     hideButton.setText("HIDE");
                     card1.setVisibility(View.VISIBLE);
                     card2.setVisibility(View.VISIBLE);
                     isHidden = false;
-                }*/
+                }
             }
         });
         helpButton.setOnClickListener(new View.OnClickListener() {
@@ -386,13 +383,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     //It's my turn!
                     Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(400);
-// need to be fixed ***********************************************************************************************************
-                    /*
+                    
                     SharedPreferences.Editor edit = mPrefs.edit();
                     edit.putString("hasTurn", "true");
                     edit.commit();
-                    */
-// need to be fixed ***********************************************************************************************************
 
                     enableButtons();
                 }
