@@ -275,7 +275,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                             confirmation.setMessage("Are you sure you want to bet " + currentBet + "?");
                             confirmation.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-                                    Toast.makeText(getActivity(), "Betting " + currentBet, Toast.LENGTH_SHORT).show();
                                     try {
                                         JSONObject msg = new JSONObject();
                                         msg.put("command","my_turn");
@@ -393,9 +392,6 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 winner.show();
             }
             else if(command.equals("hand")) {
-
-                Toast.makeText(getActivity(), "New Hands", Toast.LENGTH_LONG).show();
-
                 content = json.getJSONObject("content");
                 String card1 = content.getString("card1");
                 String card2 = content.getString("card2");
