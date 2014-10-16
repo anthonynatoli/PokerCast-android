@@ -336,7 +336,7 @@ public class CastManager {
         public void onMessageReceived(CastDevice castDevice, String namespace,
                                       String message) {
             Log.d(TAG, "onMessageReceived: " + message);
-            Toast.makeText(mContext, "R:" +  message, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(mContext, "R:" +  message, Toast.LENGTH_SHORT).show();
 
             try {
                 JSONObject json = new JSONObject(message);

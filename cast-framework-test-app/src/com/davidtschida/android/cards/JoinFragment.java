@@ -177,7 +177,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
 
     @Override
     public void onCastConnected() {
-        Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "Connected!", Toast.LENGTH_LONG).show();
         connected = true;
         connection_msg.setVisibility(View.INVISIBLE);
     }
@@ -185,7 +185,7 @@ public class JoinFragment extends CastFragment implements OnMessageReceivedListe
     @Override
     public void onCastDisconnected() {
         connected = false;
-        Toast.makeText(getActivity(), "Disconnected!", Toast.LENGTH_LONG).show();
+        //Toast.makeText(getActivity(), "Disconnected!", Toast.LENGTH_LONG).show();
         connection_msg.setVisibility(View.VISIBLE);
     }
 

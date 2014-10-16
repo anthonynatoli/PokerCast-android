@@ -19,6 +19,8 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
@@ -312,7 +314,9 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         hideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Hide Implementation
+                final Animation myRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotator);
+                card1.startAnimation(myRotation);
+                /*//Hide Implementation
                 if(!isHidden) {
                     hideButton.setText("UNDO");
                     card1.setVisibility(View.INVISIBLE);
@@ -324,7 +328,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     card1.setVisibility(View.VISIBLE);
                     card2.setVisibility(View.VISIBLE);
                     isHidden = false;
-                }
+                }*/
             }
         });
         helpButton.setOnClickListener(new View.OnClickListener() {
