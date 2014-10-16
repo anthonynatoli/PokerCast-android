@@ -62,8 +62,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
     private String fromHelp;
 
     private SharedPreferences mPrefs;
+
     public HandFragment() {
     }
+
     public void setFirstCard(String name) {
         Log.e("Setting card", "first");
         firstCard = name;
@@ -74,6 +76,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         card1.setImageDrawable(drawable);
 
     }
+
     public void setSecondCard(String name) {
         Log.e("Setting card", "second");
         secondCard = name;
@@ -84,14 +87,16 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         card2.setImageDrawable(drawable);
 
     }
+
     public void setChip(int num) {
         Log.e("Setting Chip", "SETTING");
         num_chip = num;
-        chipView.setText("X "+num_chip);
+        chipView.setText("X " + num_chip);
         SharedPreferences.Editor edit = mPrefs.edit();
         edit.putInt("chips", num);
         edit.commit();
     }
+
     public void disableButtons() {
         foldButton.setEnabled(false);
         betButton.setEnabled(false);
@@ -104,6 +109,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         betButton.getBackground().setAlpha(170);
         foldButton.getBackground().setAlpha(170);
     }
+
     public void enableButtons() {
         turnBox.setVisibility(View.VISIBLE);
 
@@ -115,6 +121,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         foldButton.setBackgroundResource(R.drawable.red_shape);
         hideButton.setBackgroundResource(R.drawable.navy_shape);
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_hand, container, false);
@@ -141,7 +148,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
         //Toast.makeText(getActivity(), "OnCreate", Toast.LENGTH_LONG).show();
 
-        if(fromHelp.equals("false")) {
+        if (fromHelp.equals("false")) {
             try {
                 JSONObject msg = new JSONObject();
                 msg.put("command", "hand_received");
@@ -163,20 +170,19 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             Log.e("Card2", mPrefs.getString("card2", null));
         }
         setChip(mPrefs.getInt("chips", 0));
-        Log.e("chip",mPrefs.getInt("chips", 0)+"");
+        Log.e("chip", mPrefs.getInt("chips", 0) + "");
         //Disable buttons unless it's my turn
         disableButtons();
 
-        if(fromHelp.equals("false")) {
+        if (fromHelp.equals("false")) {
             disableButtons();
-        }
-        else {
-            if(hasTurn.equals("true")) {
+        } else {
+            if (hasTurn.equals("true")) {
                 enableButtons();
-                edit.putString("hasTurn","false");
+                edit.putString("hasTurn", "false");
                 edit.commit();
             }
-            edit.putString("fromHelp","false");
+            edit.putString("fromHelp", "false");
             edit.commit();
         }
 
@@ -189,14 +195,24 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         card2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(!isRotated) {
-                    card1.setRotation(-12.5f);
-                    card2.setRotation(12.5f);
-                    isRotated = true;
-                }
-                else {
+                Animation reverse = AnimationUtils.loadAnimation(getActivity(), R.anim.reverse_rotator);
+                Animation rotator = AnimationUtils.loadAnimation(getActivity(), R.anim.rotator);
+                if (!isRotated) {
                     card1.setRotation(0);
                     card2.setRotation(0);
+                    reverse.reset();
+                    rotator.reset();
+                    card1.startAnimation(reverse);
+                    card2.startAnimation(rotator);
+                    isRotated = true;
+
+                } else {
+                    card1.setRotation(-13f);
+                    card2.setRotation(13f);
+                    rotator.setDuration(800);
+                    reverse.setDuration(800);
+                    card1.startAnimation(rotator);
+                    card2.startAnimation(reverse);
                     isRotated = false;
                 }
             }
@@ -207,13 +223,13 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 //Fold implementation
                 try {
                     JSONObject msg = new JSONObject();
-                    msg.put("command","my_turn");
+                    msg.put("command", "my_turn");
                     JSONObject content = new JSONObject();
                     content.put("bet", -1);
-                    msg.put("content",content);
+                    msg.put("content", content);
                     host.getCastmanager().sendMessage(msg);
 
-                } catch(JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 disableButtons();
@@ -234,7 +250,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
                 // Set an EditText view to get user input
                 betText = (EditText) dialogView.findViewById(R.id.bet_text_for_dialog);
-                betText.setText(last_bet+"");
+                betText.setText(last_bet + "");
                 betText.setSelection(betText.getText().length()); // cursor at the end
 
                 //soft keyboard shows up
@@ -258,7 +274,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                         InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         keyboard.hideSoftInputFromWindow(betText.getWindowToken(), 0);
 
-                        if(Integer.parseInt(currentBet) < last_bet) {
+                        if (Integer.parseInt(currentBet) < last_bet) {
                             // Ask confirmation for the bet amount
                             AlertDialog.Builder error = new AlertDialog.Builder(getActivity());
                             error.setTitle("BET");
@@ -269,8 +285,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                 }
                             });
                             error.show();
-                        }
-                        else {
+                        } else {
                             // Ask confirmation for the bet amount
                             AlertDialog.Builder confirmation = new AlertDialog.Builder(getActivity());
                             confirmation.setTitle("BET");
@@ -279,7 +294,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                 public void onClick(DialogInterface dialog, int whichButton) {
                                     try {
                                         JSONObject msg = new JSONObject();
-                                        msg.put("command","my_turn");
+                                        msg.put("command", "my_turn");
                                         JSONObject content = new JSONObject();
                                         content.put("bet", Integer.parseInt(currentBet));
                                         msg.put("content", content);
@@ -288,7 +303,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
-                                    setChip(num_chip-Integer.parseInt(currentBet));
+                                    setChip(num_chip - Integer.parseInt(currentBet));
                                     disableButtons();
                                 }
                             });
@@ -314,8 +329,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         hideButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Animation myRotation = AnimationUtils.loadAnimation(getActivity().getApplicationContext(), R.anim.rotator);
-                card1.startAnimation(myRotation);
+
+
                 /*//Hide Implementation
                 if(!isHidden) {
                     hideButton.setText("UNDO");
@@ -360,11 +375,11 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
         int chips = 0;
         JSONObject content;
 
-        try{
+        try {
             content = json.getJSONObject("content");
             command = json.getString("command");
             //Turn message
-            if(command.equals("turn")) {
+            if (command.equals("turn")) {
                 this.last_bet = content.getInt("last_bet");
                 turnPlayerID = content.getString("player_id");
                 if (player_id != null && player_id.equals(turnPlayerID)) {
@@ -381,8 +396,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
                     enableButtons();
                 }
-            }
-            else if(command.equals("end_hand")) {
+            } else if (command.equals("end_hand")) {
                 //End_hand message
                 winner_id = content.getString("winner_id");
                 winner_name = content.getString("winner_name");
@@ -390,7 +404,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
                 AlertDialog.Builder winner = new AlertDialog.Builder(getActivity());
                 winner.setTitle("Winner");
-                winner.setMessage("The winner is "+winner_name+".");
+                winner.setMessage("The winner is " + winner_name + ".");
                 winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         //JoinFragment jf = new JoinFragment();
@@ -402,8 +416,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     }
                 });
                 winner.show();
-            }
-            else if(command.equals("hand")) {
+            } else if (command.equals("hand")) {
                 content = json.getJSONObject("content");
                 String card1 = content.getString("card1");
                 String card2 = content.getString("card2");
@@ -431,8 +444,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
             }
 
 
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
