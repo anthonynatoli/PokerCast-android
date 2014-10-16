@@ -383,10 +383,13 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     //It's my turn!
                     Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(400);
-                    
+// need to be fixed ***********************************************************************************************************
+                    /*
                     SharedPreferences.Editor edit = mPrefs.edit();
                     edit.putString("hasTurn", "true");
                     edit.commit();
+                    */
+// need to be fixed ***********************************************************************************************************
 
                     enableButtons();
                 }
