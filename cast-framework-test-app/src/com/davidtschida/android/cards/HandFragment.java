@@ -339,7 +339,8 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     hideButton.setText("HIDE");
                     card1.setVisibility(View.VISIBLE);
                     card2.setVisibility(View.VISIBLE);
-                    isHidden = false;
+                    //Defect #20 goes here
+                    //isHidden = false;
                 }
             }
         });
