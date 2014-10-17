@@ -184,7 +184,7 @@
                 android:layout_width="37dp"
                 android:layout_height="45dp"
                 android:id="@+id/card3fh"
-                android:src="@drawable/d7"
+                android:src="@drawable/d6"
                 android:layout_alignParentRight="true"
                 android:layout_marginRight="91dp"
                 android:layout_alignBottom="@id/card1fh" />
