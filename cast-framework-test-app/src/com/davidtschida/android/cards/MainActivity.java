@@ -44,7 +44,7 @@ public class MainActivity extends ActionBarActivity implements CastmanagerHost {
 
         initActionBar();
 
-        Joinfragment w = new JoinFragment();
+        JoinFragment w = new JoinFragment();
         getCastmanager().setConnectedListener(w);
         getCastmanager().setOnMessageRecievedListener(w);
 
