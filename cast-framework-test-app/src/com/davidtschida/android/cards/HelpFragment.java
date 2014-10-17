@@ -107,28 +107,7 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
                 }
 
 
-            } else if(command.equals("end_hand")) {
-                //End_hand message
-                winner_id = content.getString("winner_id");
-                winner_name = content.getString("winner_name");
-                pot_value = content.getInt("pot_value");
-
-                AlertDialog.Builder winner = new AlertDialog.Builder(getActivity());
-                winner.setTitle("Winner");
-                winner.setMessage("The winner is " + winner_name + ".");
-
-                winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //JoinFragment jf = new JoinFragment();
-                        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        //transaction.replace(R.id.content, jf);
-                        //host.getCastmanager().setConnectedListener(jf);
-                        //host.getCastmanager().setOnMessageRecievedListener(jf);
-                        //transaction.commit();
-                    }
-                });
-                winner.show();
-            } 
+            }
 
         } catch(JSONException e) {
             e.printStackTrace();
