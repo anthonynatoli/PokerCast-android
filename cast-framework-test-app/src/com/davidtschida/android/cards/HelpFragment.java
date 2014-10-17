@@ -128,28 +128,7 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
                     }
                 });
                 winner.show();
-            } if(command.equals("hand")) {
-                Toast.makeText(getActivity(), "New hands", Toast.LENGTH_LONG).show();
-
-                content = json.getJSONObject("content");
-                String card1 = content.getString("card1");
-                String card2 = content.getString("card2");
-                int chips = content.getInt("chips");
-
-                SharedPreferences.Editor edit = mPrefs.edit();
-                edit.putString("card1", card1);
-                edit.putString("card2", card2);
-                edit.putInt("chips", chips);
-
-                try {
-                    JSONObject msg = new JSONObject();
-                    msg.put("command", "hand_received");
-                    host.getCastmanager().sendMessage(msg);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
-            }
+            } 
 
         } catch(JSONException e) {
             e.printStackTrace();
