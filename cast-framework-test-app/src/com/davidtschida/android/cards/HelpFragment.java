@@ -107,48 +107,6 @@ public class HelpFragment extends CastFragment implements OnMessageReceivedListe
                 }
 
 
-            } else if(command.equals("end_hand")) {
-                //End_hand message
-                winner_id = content.getString("winner_id");
-                winner_name = content.getString("winner_name");
-                pot_value = content.getInt("pot_value");
-
-                AlertDialog.Builder winner = new AlertDialog.Builder(getActivity());
-                winner.setTitle("Winner");
-                winner.setMessage("The winner is " + winner_name + ".");
-
-                winner.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        //JoinFragment jf = new JoinFragment();
-                        //FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        //transaction.replace(R.id.content, jf);
-                        //host.getCastmanager().setConnectedListener(jf);
-                        //host.getCastmanager().setOnMessageRecievedListener(jf);
-                        //transaction.commit();
-                    }
-                });
-                winner.show();
-            } if(command.equals("hand")) {
-                Toast.makeText(getActivity(), "New hands", Toast.LENGTH_LONG).show();
-
-                content = json.getJSONObject("content");
-                String card1 = content.getString("card1");
-                String card2 = content.getString("card2");
-                int chips = content.getInt("chips");
-
-                SharedPreferences.Editor edit = mPrefs.edit();
-                edit.putString("card1", card1);
-                edit.putString("card2", card2);
-                edit.putInt("chips", chips);
-
-                try {
-                    JSONObject msg = new JSONObject();
-                    msg.put("command", "hand_received");
-                    host.getCastmanager().sendMessage(msg);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-
             }
 
         } catch(JSONException e) {

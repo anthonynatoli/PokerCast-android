@@ -56,40 +56,22 @@ public class HostFragment extends CastFragment implements OnMessageReceivedListe
                 keyboard.hideSoftInputFromWindow(chip.getWindowToken(), 0);
 
                 try {
-                    if (player.getText().length() == 0) {
-                        Toast.makeText(getActivity(), "Enter the # of AI players", Toast.LENGTH_LONG).show();
-                        // filter null input for # players
-                    } else if (chip.getText().length() == 0) {
-                        Toast.makeText(getActivity(), "Enter the # of chips", Toast.LENGTH_LONG).show();
-                        // filter null input for chips
-                    } else {
-                        int p = Integer.parseInt(player.getText().toString());
-                        int c = Integer.parseInt(chip.getText().toString());
-                        // filter the wrong input from user.
-                        if(p < 0 || p > 21) {
-                            // 1) 1 <= # of AI player <= 21
-                            Toast.makeText(getActivity(), "Please enter the valid input(# of AI players).", Toast.LENGTH_LONG).show();
-                        } else if(c <= 0) {
-                            // 2) chips cannot be negative
-                            Toast.makeText(getActivity(), "Please enter the valid input(# of chips). ", Toast.LENGTH_LONG).show();
-                        } else {
-
-                            JSONObject msg = new JSONObject();
-                            msg.put("command","start_hand");
-                            JSONObject content = new JSONObject();
-                            content.put("aiPlayers", p);
-                            content.put("chipsPerPlayer", c);
-                            msg.put("content",content);
-                            host.getCastmanager().sendMessage(msg);
-                            pd = ProgressDialog.show(getActivity(), "Loading", "Waiting for the server...");
-                        }
-                    }
+                    int p = Integer.parseInt(player.getText().toString());
+                    int c = Integer.parseInt(chip.getText().toString());
+                    JSONObject msg = new JSONObject();
+                    msg.put("command", "start_hand");
+                    JSONObject content = new JSONObject();
+                    content.put("aiPlayers", p);
+                    content.put("chipsPerPlayer", c);
+                    msg.put("content", content);
+                    host.getCastmanager().sendMessage(msg);
+                    pd = ProgressDialog.show(getActivity(), "Loading", "Waiting for the server...");
                 } catch (JSONException e) {
                     e.printStackTrace();
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
-        }
+            }
     }
 
     );

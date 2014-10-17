@@ -287,7 +287,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                             error.setMessage("You should bet more than the last bet.");
                             error.setNegativeButton("Ok", new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int whichButton) {
-
+//Defect #36 - Betting less than the last bet
+//
+                                    disableButtons();
+//                                    
                                 }
                             });
                             error.show();
@@ -309,7 +312,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+//Defect #34 - # of chips
+/*
                                     setChip(num_chip - Integer.parseInt(currentBet));
+*/
                                     disableButtons();
                                 }
                             });
