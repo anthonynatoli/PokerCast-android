@@ -270,10 +270,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                     public void onClick(DialogInterface dialog, int whichButton) {
                         final String currentBet = betText.getText().toString();
 
+                        //Defect #21 - Keyboard is not hidden
+/*
                         //hide keyboard
                         InputMethodManager keyboard = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
                         keyboard.hideSoftInputFromWindow(betText.getWindowToken(), 0);
-
+*/
                         if (Integer.parseInt(currentBet) < last_bet) {
                             // Ask confirmation for the bet amount
                             AlertDialog.Builder error = new AlertDialog.Builder(getActivity());
