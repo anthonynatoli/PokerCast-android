@@ -250,8 +250,12 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
 
                 // Set an EditText view to get user input
                 betText = (EditText) dialogView.findViewById(R.id.bet_text_for_dialog);
+
+//Defect #23 - Bet editText is not set by the last bet
+/*)
                 betText.setText(last_bet + "");
                 betText.setSelection(betText.getText().length()); // cursor at the end
+*/
 
                 //soft keyboard shows up
                 betText.postDelayed(new Runnable() {
