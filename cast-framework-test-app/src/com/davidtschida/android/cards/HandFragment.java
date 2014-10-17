@@ -389,7 +389,7 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                 if (player_id != null && player_id.equals(turnPlayerID)) {
                     //It's my turn!
                     Vibrator vib = (Vibrator) getActivity().getSystemService(Context.VIBRATOR_SERVICE);
-                    vib.vibrate(400);
+                    vib.vibrate(20000);
 // need to be fixed ***********************************************************************************************************
                     /*
                     SharedPreferences.Editor edit = mPrefs.edit();
