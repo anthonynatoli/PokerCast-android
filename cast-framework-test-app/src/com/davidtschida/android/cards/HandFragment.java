@@ -309,7 +309,10 @@ public class HandFragment extends CastFragment implements OnMessageReceivedListe
                                     } catch (JSONException e) {
                                         e.printStackTrace();
                                     }
+//Defect #34 - # of chips
+/*
                                     setChip(num_chip - Integer.parseInt(currentBet));
+*/
                                     disableButtons();
                                 }
                             });
